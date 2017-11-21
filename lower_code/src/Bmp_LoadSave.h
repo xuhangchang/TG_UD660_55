@@ -47,11 +47,15 @@ typedef struct
 } Image;  
 
 void TG_LoadImage(Image*bmpImg,char* path);
+
 int TG_SaveImage(char* path, Image* bmpImg);  
 
 void bmp_write_data_hex(unsigned char * my_array,int length,char *string);
+
 void bmp_read_data_hex(unsigned char *buf,int length,char *string);
+
 unsigned char **bmp_Make2DArray_uint8(int row,int col);
+
 void bmp_Free2DArray_uint8(unsigned char **a,int row);
 
 void TG_SaveBmp(unsigned char *src,int height,int width,char *bmp_addr);

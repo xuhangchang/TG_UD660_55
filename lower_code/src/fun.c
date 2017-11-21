@@ -15,15 +15,15 @@ extern pthread_mutex_t mutex_spi; 	//spi mutex
 
 /*****************************************************************	
 * function: 	trans_encrypt
-* description:	æ•°æ®åŠ å¯†
-* param1:		unsigned char * data : éœ€åŠ å¯†çš„æ•°æ® (input)
-* param2:		int length			 : æ•°æ®é•¿åº¦ (input)
+* description:	Êı¾İ¼ÓÃÜ
+* param1:		unsigned char * data : Ğè¼ÓÃÜµÄÊı¾İ (input)
+* param2:		int length			 : Êı¾İ³¤¶È (input)
 * return:		void				
 * other:
 *
 * date: 		2017/11/09			
 * author:		
-******************************************************************/ 
+******************************************************************/
 void trans_encrypt(unsigned char * data,int length)
 {
 	int i,j,temp1,temp2;
@@ -46,10 +46,10 @@ void trans_encrypt(unsigned char * data,int length)
 
 /*****************************************************************	
 * function: 	Make2DArray_uint8
-* description:	å¼€è¾Ÿå¯¹åº”ç©ºé—´çš„äºŒçº§æŒ‡é’ˆ
-* param1:		int row		 : è¡Œæ•° (input)
-* param2:		int col		 : åˆ—æ•° (input)
-* return:		unsigned char **ï¼šå¼€è¾Ÿçš„äºŒçº§æŒ‡é’ˆ						
+* description:	¿ª±Ù¶ÔÓ¦¿Õ¼äµÄ¶ş¼¶Ö¸Õë
+* param1:		int row		 : ĞĞÊı (input)
+* param2:		int col		 : ÁĞÊı (input)
+* return:		unsigned char **£º¿ª±ÙµÄ¶ş¼¶Ö¸Õë						
 * other:
 *
 * date: 		2017/11/09			
@@ -71,9 +71,9 @@ unsigned char **Make2DArray_uint8(int row,int col){
 
 /*****************************************************************	
 * function: 	Free2DArray_uint8
-* description:	é‡Šæ”¾äºŒçº§æŒ‡é’ˆ
-* param1:		unsigned char **a		 : éœ€è¦é‡Šæ”¾çš„äºŒçº§æŒ‡é’ˆ (input)
-* param2:		int row					 : äºŒçº§æŒ‡é’ˆè¡Œæ•° (input)
+* description:	ÊÍ·Å¶ş¼¶Ö¸Õë
+* param1:		unsigned char **a		 : ĞèÒªÊÍ·ÅµÄ¶ş¼¶Ö¸Õë (input)
+* param2:		int row					 : ¶ş¼¶Ö¸ÕëĞĞÊı (input)
 * return:		void						
 * other:
 *
@@ -95,10 +95,10 @@ void Free2DArray_uint8(unsigned char **a,int row){
 
 /*****************************************************************	
 * function: 	read_data_hex
-* description:	è¯»å–ä¸€ä¸ªæ–‡ä»¶çš„æ•°æ®
-* param1:		unsigned char * buf		 : æ•°æ® (output)
-* param2:		int length				 : æ•°æ®é•¿åº¦ (input)
-* param3:		char *string			 : è¯»å–è·¯å¾„(input)
+* description:	¶ÁÈ¡Ò»¸öÎÄ¼şµÄÊı¾İ
+* param1:		unsigned char * buf		 : Êı¾İ (output)
+* param2:		int length				 : Êı¾İ³¤¶È (input)
+* param3:		char *string			 : ¶ÁÈ¡Â·¾¶(input)
 * return:		void						
 * other:
 *
@@ -128,10 +128,10 @@ void read_data_hex(unsigned char *buf,int length,char *string)
 
 /*****************************************************************	
 * function: 	write_data_hex
-* description:	æ•°æ®ä¿å­˜åˆ°ä¸€ä¸ªæ–‡ä»¶
-* param1:		unsigned char * my_array : æ•°æ® (input)
-* param2:		int length				 : æ•°æ®é•¿åº¦ (input)
-* param3:		char *string			 : ä¿å­˜è·¯å¾„(input)
+* description:	Êı¾İ±£´æµ½Ò»¸öÎÄ¼ş
+* param1:		unsigned char * my_array : Êı¾İ (input)
+* param2:		int length				 : Êı¾İ³¤¶È (input)
+* param3:		char *string			 : ±£´æÂ·¾¶(input)
 * return:		void							
 * other:
 *
@@ -159,9 +159,9 @@ void write_data_hex(unsigned char * my_array,int length,char *string)
 
 /*****************************************************************	
 * function: 	tg_get_file_data
-* description:	è·å–æ–‡ä»¶å†…å®¹
-* param1:		char *file_path			 : æ–‡ä»¶è·¯å¾„ (input)
-* param2:		char *data				 : å†…å®¹æ•°æ® (output)
+* description:	»ñÈ¡ÎÄ¼şÄÚÈİ
+* param1:		char *file_path			 : ÎÄ¼şÂ·¾¶ (input)
+* param2:		char *data				 : ÄÚÈİÊı¾İ (output)
 * return:		void							
 * other:
 *
@@ -265,8 +265,8 @@ int tg_get_one_file(char *dir_path,char *file_name,unsigned char *data)
 
 /*****************************************************************  
 * function:		display_tgpackage
-* description:  æ‰“å°æ•°æ®åŒ…
-* param1:     	TG_package* pack	: æŒ‡ä»¤åŒ… (input)
+* description:  ´òÓ¡Êı¾İ°ü
+* param1:     	TG_package* pack	: Ö¸Áî°ü (input)
 * return:    	void
 * other:
 *
@@ -296,22 +296,22 @@ void display_tgpackage(TG_package* pack)
 
 /*****************************************************************  
 * function:		display_tgpackage
-* description:  æ‰“å°è¯ä¹¦
-* param1:     	TG_cert* pack	: è¯ä¹¦ (input)
+* description:  ´òÓ¡Ö¤Êé
+* param1:     	TG_cert* pack	: Ö¤Êé (input)
 * return:    	void
 * other:
 *
 *
 * date:       	2017/11/09			
 * author:     	
-******************************************************************/ 
+******************************************************************/
 void display_cert(TG_cert* pack)
 {
 	printf("--------------------------------------------------------\n");
 	printf("|---------------------CERTIFICATION---------------------\n");
-	printf("|cert user_name = %.32s\n",pack->user_name);//ÓÃ»§Ãû
+	printf("|cert user_name = %.32s\n",pack->user_name);//\u7528\u6237\u540D
 	printf("|cert user_id = %d\n",pack->user_id);
-	printf("|cert cert_type = %d\n",pack->cert_type);//ÓÃ»§ÀàĞÍ
+	printf("|cert cert_type = %d\n",pack->cert_type);//\u7528\u6237\u7C7B\u578B
 	printf("|cert cert_valid_date = %.32s\n",pack->cert_valid_date);
 	printf("|cert crc1 = %x\n",pack->crc[0]);
 	printf("|cert crc2 = %x\n",pack->crc[1]);
@@ -327,7 +327,7 @@ void display_cert(TG_cert* pack)
 * param3:     	char *ip_addr	: ip addr (output)
 * param4:     	char *mac_addr	: mac addr (output)
 * return:    	-1:error 			            -   
-* others£º
+* others\uFF1A
 *
 * date:       	2017/04/18			
 * author:     	Hangchang Xu
@@ -394,11 +394,11 @@ uint16_t CrcCompute(uint8_t *src, uint16_t len, uint16_t crc)
 
 /*****************************************************************  
 * function:		test_crc
-* description:  æµ‹è¯•æ•°æ®ä¸²æœ«å°¾çš„ä¸¤å­—èŠ‚çš„CRCæ˜¯å¦æ­£ç¡®
-* param1:     	uint8_t *src	: æ•°æ® (input)
-* param2:     	uint16_t dat_len: crcä¹‹å‰çš„é•¿åº¦ (output)
-* return:    	0 : å¤±è´¥
-				1 : æˆåŠŸ			            -   
+* description:  ²âÊÔÊı¾İ´®Ä©Î²µÄÁ½×Ö½ÚµÄCRCÊÇ·ñÕıÈ·
+* param1:     	uint8_t *src	: Êı¾İ (input)
+* param2:     	uint16_t dat_len: crcÖ®Ç°µÄ³¤¶È (output)
+* return:    	0 : Ê§°Ü
+				1 : ³É¹¦			            -   
 * other:
 *
 * date:       	2017/11/09			
@@ -427,15 +427,15 @@ int test_crc(uint8_t *src,uint16_t dat_len)
 
 /*****************************************************************  
 * function:		make_crc
-* description:  åœ¨æ•°æ®ä¸²æœ«å°¾æ·»åŠ ä¸¤å­—èŠ‚çš„CRC
-* param1:     	uint8_t *src	: æ•°æ® (input)
-* param2:     	uint16_t dat_len: crcä¹‹å‰çš„é•¿åº¦ (input)
+* description:  ÔÚÊı¾İ´®Ä©Î²Ìí¼ÓÁ½×Ö½ÚµÄCRC
+* param1:     	uint8_t *src	: Êı¾İ (input)
+* param2:     	uint16_t dat_len: crcÖ®Ç°µÄ³¤¶È (input)
 * return:    	void	            -   
 * other:
 *
 * date:       	2017/11/09			
 * author:     	
-******************************************************************/ 
+******************************************************************/
 void make_crc(uint8_t *src,uint16_t dat_len)
 {
 	uint16_t crc;
@@ -614,17 +614,17 @@ int dat_get_local_cert(int fd,char* addr,stu_usr *usr_addr,TG_cert * cert)
 
 /*****************************************************************
 * function:		compare_data
-* description:  æ¯”è¾ƒä¸¤ä¸²æ•°æ®
-* param1:     	unsigned char *str1	: æ•°æ®1	(input)
-* param2:     	unsigned char *str2	: æ•°æ®2	(output)
-* param3:     	int len				: éœ€æ¯”è¾ƒçš„é•¿åº¦	(output)
+* description:  ±È½ÏÁ½´®Êı¾İ
+* param1:     	unsigned char *str1	: Êı¾İ1	(input)
+* param2:     	unsigned char *str2	: Êı¾İ2	(output)
+* param3:     	int len				: Ğè±È½ÏµÄ³¤¶È	(output)
 *
-* return:    	è´Ÿæ•°	: é”™è¯¯ 
-* 				è¯ä¹¦	: æ­£ç¡®            -   
+* return:    	¸ºÊı	: ´íÎó 
+* 				Ö¤Êé	: ÕıÈ·            -   
 * others:		
 * date:       	2017/11/09			
 * author:     	
-******************************************************************/ 
+******************************************************************/
 int compare_data(unsigned char *str1,unsigned char *str2,int len)
 {
 	int i;
@@ -775,7 +775,7 @@ int tg_uppercert_to_dat(int fd,stu_upper_data *upper_cert,unsigned char *upper_d
 	int ret_spi;
 	for(i = 0;i<num;i++)
 	{
-		/********************Ö¤ÊéFPGA½âÃÜ************************/
+		/********************\u8BC1\u4E66FPGA\u89E3\u5BC6************************/
 
 		upper_cert->cert_type = upper_cert->cert_data.cert_type;
 		upper_cert->cert_id = upper_cert->cert_data.user_id;
@@ -787,18 +787,18 @@ int tg_uppercert_to_dat(int fd,stu_upper_data *upper_cert,unsigned char *upper_d
 
 /*****************************************************************
 * function:		tg_path_to_info
-* description:  è·å–è¯ä¹¦ä¿¡æ¯
-* param1:     	char *path	:	è¯ä¹¦è·¯å¾„;	(input)
-* param2:     	char *name  : 	è¯ä¹¦å;	(output)
-* param3:     	int *id 	:	è¯ä¹¦id;	(output)
-* param4:     	int *type	:	è¯ä¹¦ç±»å‹	(output)
+* description:  »ñÈ¡Ö¤ÊéĞÅÏ¢
+* param1:     	char *path	:	Ö¤ÊéÂ·¾¶;	(input)
+* param2:     	char *name  : 	Ö¤ÊéÃû;	(output)
+* param3:     	int *id 	:	Ö¤Êéid;	(output)
+* param4:     	int *type	:	Ö¤ÊéÀàĞÍ	(output)
 *
-* return:    	1   :æˆåŠŸ 
-				-1:å¤±è´¥
+* return:    	1   :³É¹¦ 
+				-1:Ê§°Ü
 * others:		
 * date:       	2017/11/09			
 * author:     	
-******************************************************************/ 
+******************************************************************/
 int tg_path_to_info(char *path,char *name,int *id,int *type)
 {
 	char *temp;
@@ -845,24 +845,23 @@ int tg_path_to_info(char *path,char *name,int *id,int *type)
 
 /*****************************************************************
 * function:		tg_delete_file
-* description:  åˆ é™¤æ–‡ä»¶
-* param1:     	char *path	:	æ–‡ä»¶è·¯å¾„;	(input)
+* description:  É¾³ıÎÄ¼ş
+* param1:     	char *path	:	ÎÄ¼şÂ·¾¶;	(input)
 *
-* return:    	0:æˆåŠŸ 
-*				å…¶ä»–:å¤±è´¥
+* return:    	0:³É¹¦ 
+*				ÆäËû:Ê§°Ü
 * others:		
 * date:       	2017/11/09			
 * author:     	
-******************************************************************/ 
+******************************************************************/
 int tg_delete_file(char *path)
 {
 	int ret;
-	FILE *p = fopen(path, "w");   //°Ñfile.txt´ò¿ª, ÒÔÖ»¶Á·½Ê½.Èç¹ûÕâ¸öÎÄ¼ş´æÔÚ,¾ÍÇå¿Õ, Èç¹û²»´æÔÚ¾Í´´½¨
+	FILE *p = fopen(path, "w");  
     if (NULL == p){
     	printf("tg_delete_file file open Fail!\n");
-        return -2;        //Èç¹û´ò¿ªÊ§°Ü
+        return -2;        
     }
-    //ÉÏÒ»ĞĞÒ»ÔËĞĞ, Õâ¸öÎÄ¼ş¾ÍÒÑ±»Çå¿ÕÁË.
     fclose(path);
 	ret = remove(path);
     return ret;

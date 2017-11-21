@@ -16,9 +16,9 @@ B0G0R0B1G1R1B2G2R2...µÄË³Ğò½øĞĞ´æ´¢µÄ£¬Í¬Ê±£¬»¹Òª¿¼ÂÇµ½4×Ö½Ú¶ÔÆëµÄÎÊÌâ¡£
 
 /*****************************************************************  
 * function:		TG_LoadImage
-* description:  è¯»å–å›¾åƒ
-* param1:     	Image* bmpImg	: å›¾åƒæ•°æ® (output)
-* param2:     	char* path		: è¯»å–è·¯å¾„ (input)
+* description:  ¶ÁÈ¡Í¼Ïñ
+* param1:     	Image* bmpImg	: Í¼ÏñÊı¾İ (output)
+* param2:     	char* path		: ¶ÁÈ¡Â·¾¶ (input)
 * return:    	void 			               
 * other:
 *
@@ -112,15 +112,15 @@ void TG_LoadImage(Image* bmpImg,char* path)
 
  /*****************************************************************  
  * function:	 TG_SaveImage
- * description:  ä¿å­˜å›¾åƒ
- * param1:		 char* path 	 : ä¿å­˜è·¯å¾„ (input)
- * param2:		 Image* bmpImg	 : å›¾åƒæ•°æ® (input)
+ * description:  ±£´æÍ¼Ïñ
+ * param1:		 char* path 	 : ±£´æÂ·¾¶ (input)
+ * param2:		 Image* bmpImg	 : Í¼ÏñÊı¾İ (input)
  * return:		 void						 -	 
  * other:
  *
  * date:		 2017/11/09 		 
  * author:		 
- ******************************************************************/ 
+ ******************************************************************/
  int TG_SaveImage(char* path, Image* bmpImg)  
  {  
      FILE *pFile;  
@@ -208,10 +208,10 @@ void TG_LoadImage(Image* bmpImg,char* path)
 
 /*****************************************************************	
 * function: 	bmp_write_data_hex
-* description:	æ•°æ®ä¿å­˜åˆ°ä¸€ä¸ªæ–‡ä»¶
-* param1:		unsigned char * my_array : æ•°æ® (input)
-* param2:		int length				 : æ•°æ®é•¿åº¦ (input)
-* param3:		char *string			 : ä¿å­˜è·¯å¾„(input)
+* description:	Êı¾İ±£´æµ½Ò»¸öÎÄ¼ş
+* param1:		unsigned char * my_array : Êı¾İ (input)
+* param2:		int length				 : Êı¾İ³¤¶È (input)
+* param3:		char *string			 : ±£´æÂ·¾¶(input)
 * return:		void							
 * other:
 *
@@ -238,10 +238,10 @@ void bmp_write_data_hex(unsigned char * my_array,int length,char *string)
 
 /*****************************************************************	
 * function: 	bmp_read_data_hex
-* description:	è¯»å–ä¸€ä¸ªæ–‡ä»¶çš„æ•°æ®
-* param1:		unsigned char * buf		 : æ•°æ® (output)
-* param2:		int length				 : æ•°æ®é•¿åº¦ (input)
-* param3:		char *string			 : è¯»å–è·¯å¾„(input)
+* description:	¶ÁÈ¡Ò»¸öÎÄ¼şµÄÊı¾İ
+* param1:		unsigned char * buf		 : Êı¾İ (output)
+* param2:		int length				 : Êı¾İ³¤¶È (input)
+* param3:		char *string			 : ¶ÁÈ¡Â·¾¶(input)
 * return:		void						
 * other:
 *
@@ -264,10 +264,10 @@ void bmp_read_data_hex(unsigned char *buf,int length,char *string)
 
 /*****************************************************************	
 * function: 	bmp_Make2DArray_uint8
-* description:	å¼€è¾Ÿå¯¹åº”ç©ºé—´çš„äºŒçº§æŒ‡é’ˆ
-* param1:		int row		 : è¡Œæ•° (input)
-* param2:		int col		 : åˆ—æ•° (input)
-* return:		unsigned char **ï¼šå¼€è¾Ÿçš„äºŒçº§æŒ‡é’ˆ						
+* description:	¿ª±Ù¶ÔÓ¦¿Õ¼äµÄ¶ş¼¶Ö¸Õë
+* param1:		int row		 : ĞĞÊı (input)
+* param2:		int col		 : ÁĞÊı (input)
+* return:		unsigned char **£º¿ª±ÙµÄ¶ş¼¶Ö¸Õë						
 * other:
 *
 * date: 		2017/11/09			
@@ -287,15 +287,15 @@ unsigned char **bmp_Make2DArray_uint8(int row,int col){
 
 /*****************************************************************	
 * function: 	bmp_Free2DArray_uint8
-* description:	é‡Šæ”¾äºŒçº§æŒ‡é’ˆ
-* param1:		unsigned char **a		 : éœ€è¦é‡Šæ”¾çš„äºŒçº§æŒ‡é’ˆ (input)
-* param2:		int row					 : è€³æœºæŒ‡é’ˆè¡Œæ•° (input)
+* description:	ÊÍ·Å¶ş¼¶Ö¸Õë
+* param1:		unsigned char **a		 : ĞèÒªÊÍ·ÅµÄ¶ş¼¶Ö¸Õë (input)
+* param2:		int row					 : ¶ú»úÖ¸ÕëĞĞÊı (input)
 * return:		void						
 * other:
 *
 * date: 		2017/11/09			
 * author:		
-******************************************************************/ 
+******************************************************************/
 void bmp_Free2DArray_uint8(unsigned char **a,int row){
 	int i;
 	for(i=0;i<row;i++)
@@ -311,17 +311,17 @@ void bmp_Free2DArray_uint8(unsigned char **a,int row){
  
 /*****************************************************************	
 * function: 	TG_SaveBmp
-* description:	ä¿å­˜å›¾åƒï¼ˆç›¸å¯¹äºTG_SaveImageï¼Œå°è£…äº†ä¸€å±‚ï¼‰
-* param1:		unsigned char *src		 : åŸå§‹å›¾åƒæ•°æ® (input)
-* param2:		int height				 : å›¾åƒé«˜åº¦ (input)
-* param3:		int width				 : å›¾åƒå®½åº¦ (input)
-* param4:		char *bmp_addr			 : ä¿å­˜å›¾åƒçš„è·¯å¾„ (input)
+* description:	±£´æÍ¼Ïñ£¨Ïà¶ÔÓÚTG_SaveImage£¬·â×°ÁËÒ»²ã£©
+* param1:		unsigned char *src		 : Ô­Ê¼Í¼ÏñÊı¾İ (input)
+* param2:		int height				 : Í¼Ïñ¸ß¶È (input)
+* param3:		int width				 : Í¼Ïñ¿í¶È (input)
+* param4:		char *bmp_addr			 : ±£´æÍ¼ÏñµÄÂ·¾¶ (input)
 * return:		void						
 * other:
 *
 * date: 		2017/11/09			
 * author:		
-******************************************************************/ 
+******************************************************************/
 void TG_SaveBmp(unsigned char *src,int height,int width,char *bmp_addr)
 {
 	int i,j,k;
@@ -349,11 +349,11 @@ void TG_SaveBmp(unsigned char *src,int height,int width,char *bmp_addr)
  
 /*****************************************************************	
 * function: 	TG_SaveRotateBmp
-* description:	ä¿å­˜æ—‹è½¬åçš„å›¾åƒï¼ˆç›¸å¯¹äºTG_SaveImageï¼Œå°è£…äº†ä¸€å±‚ï¼‰
-* param1:		unsigned char *src		 : åŸå§‹å›¾åƒæ•°æ® (input)
-* param2:		int height				 : ä¿å­˜åçš„å›¾åƒé«˜åº¦ (input)
-* param3:		int width				 : ä¿å­˜åçš„å›¾åƒå®½åº¦ (input)
-* param4:		char *bmp_addr			 : ä¿å­˜å›¾åƒçš„è·¯å¾„ (input)
+* description:	±£´æĞı×ªºóµÄÍ¼Ïñ£¨Ïà¶ÔÓÚTG_SaveImage£¬·â×°ÁËÒ»²ã£©
+* param1:		unsigned char *src		 : Ô­Ê¼Í¼ÏñÊı¾İ (input)
+* param2:		int height				 : ±£´æºóµÄÍ¼Ïñ¸ß¶È (input)
+* param3:		int width				 : ±£´æºóµÄÍ¼Ïñ¿í¶È (input)
+* param4:		char *bmp_addr			 : ±£´æÍ¼ÏñµÄÂ·¾¶ (input)
 * return:		void						
 * other:
 *
