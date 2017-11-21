@@ -58,7 +58,7 @@ int writeComm(int fd, char* buf, int len)
 }
 
 
-int readComm(int fd, char* buf, int len, int timeout /* 潞脕脙毛 */)
+int readComm(int fd, char* buf, int len, int timeout /* ºÁÃë */)
 {
   fd_set fds;
   FD_ZERO(&fds);

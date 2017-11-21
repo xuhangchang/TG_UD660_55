@@ -15,13 +15,13 @@
 
 /*****************************************************************  
 * function:		spi_CrcCompute
-* description:  æµ‹è¯•æ•°æ®ä¸²æœ«å°¾çš„ä¸¤å­—èŠ‚çš„CRCæ˜¯å¦æ­£ç¡®
-* param1:     	uint8_t *src	: æ•°æ® (input)
-* param2:     	uint16_t dat_len: crcä¹‹å‰çš„é•¿åº¦ (output)
+* description:  ²âÊÔÊı¾İ´®Ä©Î²µÄÁ½×Ö½ÚµÄCRCÊÇ·ñÕıÈ·
+* param1:     	uint8_t *src	: Êı¾İ (input)
+* param2:     	uint16_t dat_len: crcÖ®Ç°µÄ³¤¶È (output)
 * param3:     	uint16_t crc	: useless
 
-* return:    	0 : å¤±è´¥
-				1 : æˆåŠŸ			            -   
+* return:    	0 : Ê§°Ü
+				1 : ³É¹¦			            -   
 * other:
 *
 * date:       	2017/11/09			
@@ -44,9 +44,9 @@ uint16_t spi_CrcCompute(uint8_t *src, uint16_t len, uint16_t crc)
 
 /*****************************************************************  
 * function:		tg_crc_compute
-* description:  åœ¨æ•°æ®ä¸²æœ«å°¾æ·»åŠ ä¸¤å­—èŠ‚çš„CRC
-* param1:     	uint8_t *src : æ•°æ® (input)
-* param2:     	uint16_t len : crcä¹‹å‰çš„é•¿åº¦ (input)
+* description:  ÔÚÊı¾İ´®Ä©Î²Ìí¼ÓÁ½×Ö½ÚµÄCRC
+* param1:     	uint8_t *src : Êı¾İ (input)
+* param2:     	uint16_t len : crcÖ®Ç°µÄ³¤¶È (input)
 * return:    	void	            -   
 * other:
 * date:       	2017/11/09			
@@ -63,10 +63,10 @@ int tg_crc_compute(uint8_t *src, uint16_t len)
 
 /*****************************************************************  
 * function:		tg_spi_init
-* description:  spiåˆå§‹åŒ–
-* param1:     	int fd	: spiè®¾å¤‡çš„æ–‡ä»¶æè¿°ç¬¦ (input)
+* description:  spi³õÊ¼»¯
+* param1:     	int fd	: spiÉè±¸µÄÎÄ¼şÃèÊö·û (input)
 * return:    	void 			            -   
-* other: 		è®¾ç½®spiæ¨¡å¼ï¼Œé¢‘ç‡ï¼Œä»¥åŠz32çš„åˆå§‹åŒ–
+* other: 		ÉèÖÃspiÄ£Ê½£¬ÆµÂÊ£¬ÒÔ¼°z32µÄ³õÊ¼»¯
 *		
 *
 * date:       	2017/11/09			
@@ -142,11 +142,11 @@ int tg_spi_init(int fd)
 
 /*****************************************************************  
 * function:		tg_spi_once_32
-* description:  å¾€SPIå‘é€32+2å­—èŠ‚æ•°æ®
-* param1:     	int fd			: spiè®¾å¤‡çš„æ–‡ä»¶æè¿°ç¬¦ (input)
-* param2:     	uint8_t cmd		: å‘é€ç»™spiçš„æŒ‡ä»¤ (input)
-* param3:     	uint8_t *tx_buf	: å‘é€çš„æ•°æ®ï¼Œ32å­—èŠ‚ï¼Œåé¢ä¸¤ä¸ªå­—èŠ‚CRCè‡ªåŠ¨ç”Ÿæˆ (input)
-* param4:     	uint8_t *rx_buf	: æ¥æ”¶çš„æ•°æ®ï¼Œ32å­—èŠ‚ï¼Œåé¢ä¸¤ä¸ªå­—èŠ‚CRCè‡ªåŠ¨ç”Ÿæˆ (output)
+* description:  ÍùSPI·¢ËÍ32+2×Ö½ÚÊı¾İ
+* param1:     	int fd			: spiÉè±¸µÄÎÄ¼şÃèÊö·û (input)
+* param2:     	uint8_t cmd		: ·¢ËÍ¸øspiµÄÖ¸Áî (input)
+* param3:     	uint8_t *tx_buf	: ·¢ËÍµÄÊı¾İ£¬32×Ö½Ú£¬ºóÃæÁ½¸ö×Ö½ÚCRC×Ô¶¯Éú³É (input)
+* param4:     	uint8_t *rx_buf	: ½ÓÊÕµÄÊı¾İ£¬32×Ö½Ú£¬ºóÃæÁ½¸ö×Ö½ÚCRC×Ô¶¯Éú³É (output)
 * return:    	void 			            -   
 * other: 		
 *		
@@ -244,15 +244,15 @@ int tg_spi_once_32(int fd,uint8_t cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 }
 
 
-//tx_buf ³¤¶È6148 = 6144+2+2
-//rx_buf ³¤¶È6148
+//tx_buf 3¡è??148 = 6144+2+2
+//rx_buf 3¡è??148
 /*****************************************************************  
 * function:		tg_spi_once_6k
-* description:  å¾€SPIå‘é€6148å­—èŠ‚æ•°æ®
-* param1:     	int fd			: spiè®¾å¤‡çš„æ–‡ä»¶æè¿°ç¬¦ (input)
-* param2:     	uint8_t cmd		: å‘é€ç»™spiçš„æŒ‡ä»¤ (input)
-* param3:     	uint8_t *tx_buf	: å‘é€çš„æ•°æ®ï¼Œ6148å­—èŠ‚ (input)
-* param4:     	uint8_t *rx_buf	: æ¥æ”¶çš„æ•°æ®ï¼Œ6148å­—èŠ‚ (input)
+* description:  ÍùSPI·¢ËÍ6148×Ö½ÚÊı¾İ
+* param1:     	int fd			: spiÉè±¸µÄÎÄ¼şÃèÊö·û (input)
+* param2:     	uint8_t cmd		: ·¢ËÍ¸øspiµÄÖ¸Áî (input)
+* param3:     	uint8_t *tx_buf	: ·¢ËÍµÄÊı¾İ£¬6148×Ö½Ú (input)
+* param4:     	uint8_t *rx_buf	: ½ÓÊÕµÄÊı¾İ£¬6148×Ö½Ú (input)
 * return:    	void 			            -   
 * other: 		
 *		
@@ -341,12 +341,12 @@ int tg_spi_once_6k(int fd,int cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 //tx_buf len = 32/6144
 /*****************************************************************  
 * function:		tg_spi_tx_rx
-* description:  å¾€SPIå‘é€æ•°æ®
-* param1:     	int fd			: spiè®¾å¤‡çš„æ–‡ä»¶æè¿°ç¬¦ (input)
-* param2:     	uint8_t cmd		: å‘é€ç»™spiçš„æŒ‡ä»¤ (input)
-* param3:     	uint8_t *tx_buf	: å‘é€çš„æ•°æ® (input)
-* param4:     	uint8_t *rx_buf	: æ¥æ”¶çš„æ•°æ® (output)
-* param5:     	int len			: å‘é€çš„æ•°æ®é•¿åº¦ï¼Œ32/6144 (input)
+* description:  ÍùSPI·¢ËÍÊı¾İ
+* param1:     	int fd			: spiÉè±¸µÄÎÄ¼şÃèÊö·û (input)
+* param2:     	uint8_t cmd		: ·¢ËÍ¸øspiµÄÖ¸Áî (input)
+* param3:     	uint8_t *tx_buf	: ·¢ËÍµÄÊı¾İ (input)
+* param4:     	uint8_t *rx_buf	: ½ÓÊÕµÄÊı¾İ (output)
+* param5:     	int len			: ·¢ËÍµÄÊı¾İ³¤¶È£¬32/6144 (input)
 * return:    	void 			            -   
 * other: 		
 *		
@@ -416,9 +416,9 @@ int tg_spi_tx_rx(int fd,uint8_t cmd,uint8_t *tx_buf,uint8_t *rx_buf,int len)
 
 /*****************************************************************  
 * function:		tg_spi_xor
-* description:  FPGAåŠ å¯†è¯ä¹¦
-* param1:     	unsigned char * src	: è¯ä¹¦æ•°æ® (input)
-* param2:     	int length			: è¯ä¹¦é•¿åº¦ (input)
+* description:  FPGA¼ÓÃÜÖ¤Êé
+* param1:     	unsigned char * src	: Ö¤ÊéÊı¾İ (input)
+* param2:     	int length			: Ö¤Êé³¤¶È (input)
 * return:    	void 			            -   
 * other: 		
 *		
@@ -443,11 +443,11 @@ void tg_spi_xor(unsigned char * src,int length)
 
 /*****************************************************************  
 * function:		tg_spi_key_store
-* description:  å¯†é’¥å­˜å‚¨
-* param1:     	int fd			: spiè®¾å¤‡çš„æ–‡ä»¶æè¿°ç¬¦ (input)
-* param2:     	uint8_t *tx_buf	: éœ€è¦å­˜å‚¨çš„å¯†é’¥ (input)
-* return:    	0 :æˆåŠŸ
-*				å…¶ä»–:å¤±è´¥   
+* description:  ÃÜÔ¿´æ´¢
+* param1:     	int fd			: spiÉè±¸µÄÎÄ¼şÃèÊö·û (input)
+* param2:     	uint8_t *tx_buf	: ĞèÒª´æ´¢µÄÃÜÔ¿ (input)
+* return:    	0 :³É¹¦
+*				ÆäËû:Ê§°Ü   
 * other: 		
 *		
 * date:       	2017/11/09			
@@ -468,11 +468,11 @@ int tg_spi_key_store(int fd,uint8_t *tx_buf)
 
 /*****************************************************************  
 * function:		tg_spi_random_num_req
-* description:  éšæœºæ•°è¯·æ±‚
-* param1:     	int fd			: spiè®¾å¤‡çš„æ–‡ä»¶æè¿°ç¬¦ (input)
-* param2:     	uint8_t *tx_buf	: è·å¾—çš„éšæœºæ•° (input)
-* return:    	0 :æˆåŠŸ
-*				å…¶ä»–:å¤±è´¥		            -   
+* description:  Ëæ»úÊıÇëÇó
+* param1:     	int fd			: spiÉè±¸µÄÎÄ¼şÃèÊö·û (input)
+* param2:     	uint8_t *tx_buf	: »ñµÃµÄËæ»úÊı (input)
+* return:    	0 :³É¹¦
+*				ÆäËû:Ê§°Ü		            -   
 * other: 		
 *		
 * date:       	2017/11/09			
@@ -493,10 +493,10 @@ int tg_spi_random_num_req(int fd,uint8_t *tx_buf)
 
 /*****************************************************************  
 * function:		tg_spi_key_req
-* description:  éšæœºæ•°è¯·æ±‚
-* param1:     	int fd			: spiè®¾å¤‡çš„æ–‡ä»¶æè¿°ç¬¦ (input)
-* return:    	0 :æˆåŠŸ
-*				å…¶ä»–:å¤±è´¥			            -   
+* description:  Ëæ»úÊıÇëÇó
+* param1:     	int fd			: spiÉè±¸µÄÎÄ¼şÃèÊö·û (input)
+* return:    	0 :³É¹¦
+*				ÆäËû:Ê§°Ü			            -   
 * other: 		
 *		
 * date:       	2017/11/09			
@@ -519,11 +519,11 @@ int tg_spi_key_req(int fd)
 
 /*****************************************************************  
 * function:		tg_spi_cert_encrypt
-* description:  è¯ä¹¦åŠ å¯†
-* param1:     	int fd			: spiè®¾å¤‡çš„æ–‡ä»¶æè¿°ç¬¦ (input)
-* param2:		uint8_t *tx_buf : åŠ å¯†çš„è¯ä¹¦(input/output)
-* return:    	0 :æˆåŠŸ
-*				å…¶ä»–:å¤±è´¥			            -   
+* description:  Ö¤Êé¼ÓÃÜ
+* param1:     	int fd			: spiÉè±¸µÄÎÄ¼şÃèÊö·û (input)
+* param2:		uint8_t *tx_buf : ¼ÓÃÜµÄÖ¤Êé(input/output)
+* return:    	0 :³É¹¦
+*				ÆäËû:Ê§°Ü			            -   
 * other: 		
 *		
 * date:       	2017/11/09			
@@ -547,11 +547,11 @@ int tg_spi_cert_encrypt(int fd,uint8_t *tx_buf)
 
 /*****************************************************************  
 * function:		tg_spi_cert_decrypt
-* description:  è¯ä¹¦åŠ å¯†
-* param1:     	int fd			: spiè®¾å¤‡çš„æ–‡ä»¶æè¿°ç¬¦ (input)
-* param2:		uint8_t *tx_buf : è§£å¯†çš„è¯ä¹¦(input/output)
-* return:    	0 :æˆåŠŸ
-*				å…¶ä»–:å¤±è´¥			            -   
+* description:  Ö¤Êé¼ÓÃÜ
+* param1:     	int fd			: spiÉè±¸µÄÎÄ¼şÃèÊö·û (input)
+* param2:		uint8_t *tx_buf : ½âÃÜµÄÖ¤Êé(input/output)
+* return:    	0 :³É¹¦
+*				ÆäËû:Ê§°Ü			            -   
 * other: 		
 *		
 * date:       	2017/11/09			

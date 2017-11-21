@@ -1,4 +1,4 @@
-ï»¿#ifndef RTX_H 
+#ifndef RTX_H 
 #define RTX_H 
 
 #define BUFSIZE 1024*1024*16
@@ -9,45 +9,45 @@
 
 
 typedef struct {
-	char	device_name[32];	//è®¾å¤‡å
+	char	device_name[32];	//Éè±¸Ãû
 	int 	id;					//ID
-	int		cmd1;				//æŒ‡ä»¤1
-	int		cmd2;				//æŒ‡ä»¤2
-	int 	length;				//æ•°æ®é•¿åº¦
-	int		cert_type;			//è¯ä¹¦ç±»å‹
-	int		sup_mgr_num;		//æœ¬åœ°è¶…ç®¡è¯ä¹¦ä¸ªæ•°
-	int		mgr_num;			//æœ¬åœ°ç®¡ç†å‘˜è¯ä¹¦ä¸ªæ•°
-	int		usr_num;			//æœ¬åœ°ç”¨æˆ·è¯ä¹¦ä¸ªæ•°
-	char	serial_num[32];		//åºåˆ—å·
-	char	random_num[32];		//éšæœºæ•°
-	char	cert_name[32];		//è¯ä¹¦åå­—
-	char 	reserve_char[96];	//é¢„ç•™å¤‡ç”¨
-	char 	reserve_char_768[768];	//é¢„ç•™å¤‡ç”¨
-}TG_package;//æŒ‡ä»¤åŒ…  1024B	
+	int		cmd1;				//Ö¸Áî1
+	int		cmd2;				//Ö¸Áî2
+	int 	length;				//Êı¾İ³¤¶È
+	int		cert_type;			//Ö¤ÊéÀàĞÍ
+	int		sup_mgr_num;		//±¾µØ³¬¹ÜÖ¤Êé¸öÊı
+	int		mgr_num;			//±¾µØ¹ÜÀíÔ±Ö¤Êé¸öÊı
+	int		usr_num;			//±¾µØÓÃ»§Ö¤Êé¸öÊı
+	char	serial_num[32];		//ĞòÁĞºÅ
+	char	random_num[32];		//Ëæ»úÊı
+	char	cert_name[32];		//Ö¤ÊéÃû×Ö
+	char 	reserve_char[96];	//Ô¤Áô±¸ÓÃ
+	char 	reserve_char_768[768];	//Ô¤Áô±¸ÓÃ
+}TG_package;//Ö¸Áî°ü  1024B	
 
 typedef struct {
-	char	user_name[56];				//ç”¨æˆ·å
-	int 	cert_type;				//è¯ä¹¦ç±»å‹
-	int 	user_id;				//ç”¨æˆ·ID
-	char 	cert_valid_date[32];		//è¯ä¹¦æœ‰æ•ˆæœŸ
-	unsigned char chara[4096];			//ä¸‰æ ¹æ‰‹æŒ‡ç‰¹å¾ç‚¹ 3*1296=3888 é¢„ç•™4k
-	char		key[20*96];				//åŠ¨æ€åŠ å¯†å¯†é’¥+æ‰“åŒ…åŠ å¯†å¯†é’¥  (96+96)*10
-	char	reserve_32[32];					//å­—èŠ‚å¯¹é½
+	char	user_name[56];				//ÓÃ»§Ãû
+	int 	cert_type;				//Ö¤ÊéÀàĞÍ
+	int 	user_id;				//ÓÃ»§ID
+	char 	cert_valid_date[32];		//Ö¤ÊéÓĞĞ§ÆÚ
+	unsigned char chara[4096];			//Èı¸ùÊÖÖ¸ÌØÕ÷µã 3*1296=3888 Ô¤Áô4k
+	char		key[20*96];				//¶¯Ì¬¼ÓÃÜÃÜÔ¿+´ò°ü¼ÓÃÜÃÜÔ¿  (96+96)*10
+	char	reserve_32[32];					//×Ö½Ú¶ÔÆë
 	char	crc[2];						//crc
-	char	reserve_2[2];					//å­—èŠ‚å¯¹é½
-}TG_cert;//è¯ä¹¦ï¼›6148B	//å› ä¸ºæœ‰intç±»å‹ï¼Œæ‰€ä»¥æŒ‰4å­—èŠ‚å¯¹é½ï¼Œæ­¤ç»“æ„ä½“å¤§å°å°±ä¸º6148
+	char	reserve_2[2];					//×Ö½Ú¶ÔÆë
+}TG_cert;//Ö¤Êé£»6148B	//ÒòÎªÓĞintÀàĞÍ£¬ËùÒÔ°´4×Ö½Ú¶ÔÆë£¬´Ë½á¹¹Ìå´óĞ¡¾ÍÎª6148
 
 
 typedef struct {
-	char	dev_key[32];				//è®¾å¤‡å¯†é’¥
+	char	dev_key[32];				//Éè±¸ÃÜÔ¿
 	char	crc[2];						//crc
-}TG_dev_key;//è®¾å¤‡å¯†é’¥ï¼›34B
+}TG_dev_key;//Éè±¸ÃÜÔ¿£»34B
 
 
 typedef struct {
 	unsigned char enroll_chara[4096];
 	char new_reg_path[256];					//crc
-}TG_enroll_data;//new user dataï¼›
+}TG_enroll_data;//new user data£»
 
 
 extern int wd_fd;

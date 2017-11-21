@@ -57,11 +57,11 @@ void tg_image_find_edge_9V034(unsigned char *data)
 
 /*****************************************************************
 * function:		tg_image_adaptive_9V034
-* description:  è·å–å›¾åƒ+è‡ªé€‚åº”
-* param1:     	int fd				:	æ‘„åƒå¤´è®¾å¤‡æ–‡ä»¶æè¿°ç¬¦	(input)
-* param2:		unsigned char *data:	å›¾åƒæ•°æ®(input)
-* return:    	0   : æˆåŠŸ
-*				å…¶ä»–: å¤±è´¥
+* description:  »ñÈ¡Í¼Ïñ+×ÔÊÊÓ¦
+* param1:     	int fd				:	ÉãÏñÍ·Éè±¸ÎÄ¼şÃèÊö·û	(input)
+* param2:		unsigned char *data:	Í¼ÏñÊı¾İ(input)
+* return:    	0   : ³É¹¦
+*				ÆäËû: Ê§°Ü
 * others:		
 * date:       	2017/11/09			
 * author:     	
@@ -124,9 +124,9 @@ void tg_image_adaptive_9V034(int fd,unsigned char *data)
 
 /*****************************************************************
 * function:		tg_image_gray
-* description:  è®¡ç®—å›¾åƒç°åº¦å¹³å‡å€¼
-* param1:     	unsigned char *array_data	:	å›¾åƒæ•°æ®	(input)
-* return:    	ç°åº¦å¹³å‡å€¼
+* description:  ¼ÆËãÍ¼Ïñ»Ò¶ÈÆ½¾ùÖµ
+* param1:     	unsigned char *array_data	:	Í¼ÏñÊı¾İ	(input)
+* return:    	»Ò¶ÈÆ½¾ùÖµ
 * others:		
 * date:       	2017/11/09			
 * author:     	
@@ -164,11 +164,11 @@ int tg_image_gray(unsigned char *array_data)
 //7725  cut_image 480*640 -> 200*500, get des_pic
 /*****************************************************************
 * function:		cut_image
-* description:  è£å‰ªå›¾åƒ
-* param1:     	unsigned char *src_pic	:	åŸå§‹å›¾åƒæ•°æ®	(input)
-* param2:     	unsigned char *des_pic	:	è£å‰ªå®Œå›¾åƒæ•°æ®	(input)
-* param3:     	int start_row	:	è£å‰ªèµ·å§‹è¡Œ	(input)
-* param4:     	int start_col	:	è£å‰ªèµ·å§‹åˆ—	(input)
+* description:  ²Ã¼ôÍ¼Ïñ
+* param1:     	unsigned char *src_pic	:	Ô­Ê¼Í¼ÏñÊı¾İ	(input)
+* param2:     	unsigned char *des_pic	:	²Ã¼ôÍêÍ¼ÏñÊı¾İ	(input)
+* param3:     	int start_row	:	²Ã¼ôÆğÊ¼ĞĞ	(input)
+* param4:     	int start_col	:	²Ã¼ôÆğÊ¼ÁĞ	(input)
 
 
 * return:    	void

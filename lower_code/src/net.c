@@ -6,7 +6,7 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-#include <arpa/inet.h> //inet_ntoa()å‡½æ•°çš„å¤´æ–‡ä»¶
+#include <arpa/inet.h> //inet_ntoa()º¯ÊıµÄÍ·ÎÄ¼ş
 #include <unistd.h>   
 #include <pthread.h>
 #include <signal.h>
@@ -18,11 +18,11 @@ char send_buf[BUFSIZE],recv_buf[BUFSIZE];
 
 /*****************************************************************
 * function:		net_client_connect
-* description:  è¿æ¥æœåŠ¡å™¨
-* param1:     	char *path	:	ipåœ°å€;	(input)
-* param2:		int port	:	ç«¯å£å·;(input)
-* return:    	-1  :å¤±è´¥ 
-*				å…¶ä»–:æˆåŠŸ
+* description:  Á¬½Ó·şÎñÆ÷
+* param1:     	char *path	:	ipµØÖ·;	(input)
+* param2:		int port	:	¶Ë¿ÚºÅ;(input)
+* return:    	-1  :Ê§°Ü 
+*				ÆäËû:³É¹¦
 * others:		
 * date:       	2017/11/09			
 * author:     	
@@ -74,15 +74,15 @@ int net_service_init(char *addr,int port)
         exit(1);
     }
 
-    bzero(&server_addr,sizeof(struct sockaddr_in)); // åˆå§‹åŒ–,ç½®0
+    bzero(&server_addr,sizeof(struct sockaddr_in)); // ³õÊ¼»¯,ÖÃ0
     server_addr.sin_family=AF_INET; // Internet
     if(addr!=NULL)
-		server_addr.sin_addr.s_addr=inet_addr(addr); //ç”¨äºç»‘å®šåˆ°ä¸€ä¸ªå›ºå®šIP,inet_addrç”¨äºæŠŠæ•°å­—åŠ æ ¼å¼çš„ipè½¬åŒ–ä¸ºæ•´å½¢ip
+		server_addr.sin_addr.s_addr=inet_addr(addr); //ÓÃÓÚ°ó¶¨µ½Ò»¸ö¹Ì¶¨IP,inet_addrÓÃÓÚ°ÑÊı×Ö¼Ó¸ñÊ½µÄip×ª»¯ÎªÕûĞÎip
 	else
-    	server_addr.sin_addr.s_addr=htonl(INADDR_ANY); // (å°†æœ¬æœºå™¨ä¸Šçš„longæ•°æ®è½¬åŒ–ä¸ºç½‘ç»œä¸Šçš„longæ•°æ®)å’Œä»»ä½•ä¸»æœºé€šä¿¡ 
-    	//INADDR_ANY è¡¨ç¤ºå¯ä»¥æ¥æ”¶ä»»æ„IPåœ°å€çš„æ•°æ®ï¼Œå³ç»‘å®šåˆ°æ‰€æœ‰çš„IP
+    	server_addr.sin_addr.s_addr=htonl(INADDR_ANY); // (½«±¾»úÆ÷ÉÏµÄlongÊı¾İ×ª»¯ÎªÍøÂçÉÏµÄlongÊı¾İ)ºÍÈÎºÎÖ÷»úÍ¨ĞÅ 
+    	//INADDR_ANY ±íÊ¾¿ÉÒÔ½ÓÊÕÈÎÒâIPµØÖ·µÄÊı¾İ£¬¼´°ó¶¨µ½ËùÓĞµÄIP
 
-    server_addr.sin_port=htons(port); // (å°†æœ¬æœºå™¨ä¸Šçš„shortæ•°æ®è½¬åŒ–ä¸ºç½‘ç»œä¸Šçš„shortæ•°æ®)ç«¯å£å·
+    server_addr.sin_port=htons(port); // (½«±¾»úÆ÷ÉÏµÄshortÊı¾İ×ª»¯ÎªÍøÂçÉÏµÄshortÊı¾İ)¶Ë¿ÚºÅ
 
 	unsigned int value = 0x1;
 	setsockopt(sockfd,SOL_SOCKET,SO_REUSEADDR,(void *)&value,sizeof(value)); 
@@ -114,7 +114,7 @@ int net_service_accept(int sockfd)
 		fprintf(stderr,"Accept error:%s\n\a",strerror(errno));
 		return -1;
 	}
-	fprintf(stderr,"Server get connection from %s\n",inet_ntoa(client_addr.sin_addr)); // å°†ç½‘ç»œåœ°å€è½¬æ¢æˆ.å­—ç¬¦ä¸²ï¼Œå¹¶æ‰“å°åˆ°è¾“å‡ºç»ˆç«¯
+	fprintf(stderr,"Server get connection from %s\n",inet_ntoa(client_addr.sin_addr)); // ½«ÍøÂçµØÖ·×ª»»³É.×Ö·û´®£¬²¢´òÓ¡µ½Êä³öÖÕ¶Ë
 	
 	return new_fd;
 }
@@ -123,13 +123,13 @@ int net_service_accept(int sockfd)
 
 /*****************************************************************
 * function:		TG_NetSendPackage
-* description:  å‘é€ç»™PCæ•°æ®
-* param1:     	int fd				:	ç½‘ç»œè®¾å¤‡æ–‡ä»¶æè¿°ç¬¦	(input)
-* param2:		TG_package* pack	:	æŒ‡ä»¤åŒ… (input)
-* param3:		char* buf			:	æ•°æ®åŒ… (input)
+* description:  ·¢ËÍ¸øPCÊı¾İ
+* param1:     	int fd				:	ÍøÂçÉè±¸ÎÄ¼şÃèÊö·û	(input)
+* param2:		TG_package* pack	:	Ö¸Áî°ü (input)
+* param3:		char* buf			:	Êı¾İ°ü (input)
 
-* return:    	1   : æˆåŠŸ
-*				å…¶ä»–: å¤±è´¥
+* return:    	1   : ³É¹¦
+*				ÆäËû: Ê§°Ü
 * others:		
 * date:       	2017/11/09			
 * author:     	
@@ -155,13 +155,13 @@ int TG_NetSendPackage(int fd,TG_package* pack,char* buf)
 
 /*****************************************************************
 * function:		TG_NetRecvPackage
-* description:  æ¥æ”¶æ¥è‡ªPCçš„æ•°æ®
-* param1:     	int fd				:	ç½‘ç»œè®¾å¤‡æ–‡ä»¶æè¿°ç¬¦	(input)
-* param2:		TG_package* pack	:	æŒ‡ä»¤åŒ… (output)
-* param3:		char* buf			:	æ•°æ®åŒ… (output)
+* description:  ½ÓÊÕÀ´×ÔPCµÄÊı¾İ
+* param1:     	int fd				:	ÍøÂçÉè±¸ÎÄ¼şÃèÊö·û	(input)
+* param2:		TG_package* pack	:	Ö¸Áî°ü (output)
+* param3:		char* buf			:	Êı¾İ°ü (output)
 
-* return:    	1   : æˆåŠŸ
-*				å…¶ä»–: å¤±è´¥
+* return:    	1   : ³É¹¦
+*				ÆäËû: Ê§°Ü
 * others:		
 * date:       	2017/11/09			
 * author:     	
@@ -224,7 +224,7 @@ int TG_HidSendPackage(int fd,TG_package* pack,char* buf)
 int TG_HidRecvPackage(int fd,TG_package* pack,char*buf)
 {
 
-//pack.length ÊÇÕæÊµÊı¾İ = Êµ¼Ê´«ÊäÊı¾İ/2
+//pack.length ¡¦?????= ????????2
 	int len,ret=1;
 	char *tmp = NULL;
 	char tmp_pack[2052] = {0};

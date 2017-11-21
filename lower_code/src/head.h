@@ -4,93 +4,93 @@
 #define TG_DEBUG
 //#define REG_DEBUG
 
-/*********************æŒ‡ä»¤**********************/
+/*********************Ö¸Áî**********************/
 //CMD1;no date package
-#define DEV_KEY 0x0001				//è®¾å¤‡å¯†é’¥ï¼› 		PC->ARM
-#define DEV_KEY_SET_SUCCESS 0x0002			//è®¾å¤‡å¯†é’¥è®¾ç½®æˆåŠŸï¼›  ARM->PC
-#define DEV_KEY_SET_FAILED 0x0003		//è®¾å¤‡å¯†é’¥è®¾ç½®å¤±è´¥ï¼›  ARM->PC
+#define DEV_KEY 0x0001				//Éè±¸ÃÜÔ¿£» 		PC->ARM
+#define DEV_KEY_SET_SUCCESS 0x0002			//Éè±¸ÃÜÔ¿ÉèÖÃ³É¹¦£»  ARM->PC
+#define DEV_KEY_SET_FAILED 0x0003		//Éè±¸ÃÜÔ¿ÉèÖÃÊ§°Ü£»  ARM->PC
 
-#define	RAN_NUM_REQ			0x0006		//éšæœºæ•°è¯·æ±‚ï¼›	PC->ARM
-#define	RAN_NUM				0x0007	//éšæœºæ•°ï¼›	ARM->PC
+#define	RAN_NUM_REQ			0x0006		//Ëæ»úÊıÇëÇó£»	PC->ARM
+#define	RAN_NUM				0x0007	//Ëæ»úÊı£»	ARM->PC
 
-#define	RESEND_CERT_REQ		0x0008	//è¯·æ±‚é‡æ–°ä¼ è¾“è¯ä¹¦ï¼Œæ³¨å†Œå®Œçš„è¶…ç®¡æˆ–ç®¡ç†å‘˜è¯ä¹¦ï¼›	PC->ARM
-#define	CERT_INFO_REQ		0x0020	//è¯·æ±‚ä¼ è¾“h3ä¸Šå­˜å‚¨çš„å„ç±»è¯ä¹¦ä¸ªæ•°,ä¿¡æ¯ï¼Œå¯¹åº” CERT_NUMï¼›	PC->ARM
-#define	CERT_DATA_REQ		0x0021	//è¯·æ±‚ä¼ è¾“h3ä¸Šå­˜å‚¨çš„å„ç±»è¯ä¹¦ï¼›	PC->ARM
+#define	RESEND_CERT_REQ		0x0008	//ÇëÇóÖØĞÂ´«ÊäÖ¤Êé£¬×¢²áÍêµÄ³¬¹Ü»ò¹ÜÀíÔ±Ö¤Êé£»	PC->ARM
+#define	CERT_INFO_REQ		0x0020	//ÇëÇó´«Êäh3ÉÏ´æ´¢µÄ¸÷ÀàÖ¤Êé¸öÊı,ĞÅÏ¢£¬¶ÔÓ¦ CERT_NUM£»	PC->ARM
+#define	CERT_DATA_REQ		0x0021	//ÇëÇó´«Êäh3ÉÏ´æ´¢µÄ¸÷ÀàÖ¤Êé£»	PC->ARM
 
-#define	UPPER_CERT_CONFIRM			0x0022	//ä¸Šä½æœºæ”¶åˆ°è¯ä¹¦ä¸”CRCæ­£ç¡®ï¼Œåˆ é™¤åŸæ¥çš„è¯ä¹¦ï¼›	PC->ARM
-#define	UPPER_CERT_NO_CONFIRM		0x0023	//ä¸Šä½æœºæ²¡æ”¶åˆ°è¯ä¹¦æˆ–è€…CRCé”™è¯¯ï¼Œé‡æ–°ä¼ è¾“éªŒè¯æˆåŠŸçš„æœ¬åœ°è¯ä¹¦ï¼›	PC->ARM
+#define	UPPER_CERT_CONFIRM			0x0022	//ÉÏÎ»»úÊÕµ½Ö¤ÊéÇÒCRCÕıÈ·£¬É¾³ıÔ­À´µÄÖ¤Êé£»	PC->ARM
+#define	UPPER_CERT_NO_CONFIRM		0x0023	//ÉÏÎ»»úÃ»ÊÕµ½Ö¤Êé»òÕßCRC´íÎó£¬ÖØĞÂ´«ÊäÑéÖ¤³É¹¦µÄ±¾µØÖ¤Êé£»	PC->ARM
 /*************************************/
-#define	REG_CERT_RESEND		0x0024	//ä¸‹ä½æœºæ³¨å†Œå®Œä¼ ç»™ä¸Šä½æœºçš„è¯ä¹¦CRCé”™è¯¯ï¼Œé‡æ–°æ³¨å†Œçš„è¯ä¹¦ï¼›	PC->ARM
+#define	REG_CERT_RESEND		0x0024	//ÏÂÎ»»ú×¢²áÍê´«¸øÉÏÎ»»úµÄÖ¤ÊéCRC´íÎó£¬ÖØĞÂ×¢²áµÄÖ¤Êé£»	PC->ARM
 
-#define INFO_DATA_CRC_ERR		0x0025	//ä¸‹ä½æœºæ”¶åˆ°çš„ è¯ä¹¦å¯†é’¥+äººå‘˜ä¿¡æ¯ çš„CRCé”™è¯¯	ARM->PC
-#define CERT_DATA_B_CRC_RIGHT	0x0027	//ä¸Šä½æœºå¯¼å…¥åˆ°H3ä¸­çš„è¯ä¹¦CRCæ­£ç¡®ï¼›ARM->PC
-#define CERT_DATA_B_CRC_ERR		0x0028	//ä¸Šä½æœºå¯¼å…¥åˆ°H3ä¸­çš„è¯ä¹¦CRCé”™è¯¯ï¼›ARM->PC
-#define	FLOW_CANCEL				0x0029	//ç»“æŸæ­£åœ¨è¿›è¡Œä¸­çš„æ³¨å†Œæ¯”å¯¹æµç¨‹ï¼›	PC->ARM
+#define INFO_DATA_CRC_ERR		0x0025	//ÏÂÎ»»úÊÕµ½µÄ Ö¤ÊéÃÜÔ¿+ÈËÔ±ĞÅÏ¢ µÄCRC´íÎó	ARM->PC
+#define CERT_DATA_B_CRC_RIGHT	0x0027	//ÉÏÎ»»úµ¼Èëµ½H3ÖĞµÄÖ¤ÊéCRCÕıÈ·£»ARM->PC
+#define CERT_DATA_B_CRC_ERR		0x0028	//ÉÏÎ»»úµ¼Èëµ½H3ÖĞµÄÖ¤ÊéCRC´íÎó£»ARM->PC
+#define	FLOW_CANCEL				0x0029	//½áÊøÕıÔÚ½øĞĞÖĞµÄ×¢²á±È¶ÔÁ÷³Ì£»	PC->ARM
 
 
-#define	CERT_NUM			0x0030	//h3ä¸Šå­˜å‚¨çš„å„ç±»è¯ä¹¦ä¸ªæ•°,å¯¹åº” CERT_INFO_REQï¼›	ARM->PC
-#define	CERT_ENCRYPT		0x0031	//ä¸Šä½æœºå•ä¸ªè¯ä¹¦åŠ å¯†è¯·æ±‚ï¼›	PC->ARM
-#define	CERT_DECRYPT		0x0032	//ä¸Šä½æœºå•ä¸ªè¯ä¹¦è§£å¯†è¯·æ±‚ï¼›	PC->ARM
-#define	CERT_ENCRYPT_DONE	0x0033	//ä¸Šä½æœºå•ä¸ªè¯ä¹¦åŠ å¯†å®Œæˆï¼›	ARM->PC
-#define	CERT_DECRYPT_DONE	0x0034	//ä¸Šä½æœºå•ä¸ªè¯ä¹¦è§£å¯†å®Œæˆï¼›	ARM->PC
-#define	CERT_CRYPT_FAIL		0x0035	//ä¸Šä½æœºå•ä¸ªè¯ä¹¦åŠ è§£å¯†å¤±è´¥ï¼›	ARM->PC
+#define	CERT_NUM			0x0030	//h3ÉÏ´æ´¢µÄ¸÷ÀàÖ¤Êé¸öÊı,¶ÔÓ¦ CERT_INFO_REQ£»	ARM->PC
+#define	CERT_ENCRYPT		0x0031	//ÉÏÎ»»úµ¥¸öÖ¤Êé¼ÓÃÜÇëÇó£»	PC->ARM
+#define	CERT_DECRYPT		0x0032	//ÉÏÎ»»úµ¥¸öÖ¤Êé½âÃÜÇëÇó£»	PC->ARM
+#define	CERT_ENCRYPT_DONE	0x0033	//ÉÏÎ»»úµ¥¸öÖ¤Êé¼ÓÃÜÍê³É£»	ARM->PC
+#define	CERT_DECRYPT_DONE	0x0034	//ÉÏÎ»»úµ¥¸öÖ¤Êé½âÃÜÍê³É£»	ARM->PC
+#define	CERT_CRYPT_FAIL		0x0035	//ÉÏÎ»»úµ¥¸öÖ¤Êé¼Ó½âÃÜÊ§°Ü£»	ARM->PC
 
-#define	GET_LOGINING_CERT	0x0035	//è¯·æ±‚è·å–åˆšç™»å½•ç”¨æˆ·çš„è¯ä¹¦ï¼›			PC->ARM  	ARM->PC
+#define	GET_LOGINING_CERT	0x0035	//ÇëÇó»ñÈ¡¸ÕµÇÂ¼ÓÃ»§µÄÖ¤Êé£»			PC->ARM  	ARM->PC
 
-#define ENROLL_REQ 			0x0100		//æ³¨å†Œè¯·æ±‚ï¼›		PC->ARM
-#define	ENROLL_SUCCESS		0x0101		//æ³¨å†ŒæˆåŠŸï¼›		ARM->PC
-#define ENROLL_FAILED		0x0102		//æ³¨å†Œå¤±è´¥ï¼›		ARM->PC	
+#define ENROLL_REQ 			0x0100		//×¢²áÇëÇó£»		PC->ARM
+#define	ENROLL_SUCCESS		0x0101		//×¢²á³É¹¦£»		ARM->PC
+#define ENROLL_FAILED		0x0102		//×¢²áÊ§°Ü£»		ARM->PC	
 
-#define VALIDATE_LOCAL_REQ 		0x0110		//æœ¬åœ°è¯ä¹¦(H3)éªŒè¯è¯·æ±‚ï¼›		PC->ARM
-#define	VALIDATE_LOCAL_SUCCESS	0x0111		//æœ¬åœ°è¯ä¹¦(H3)éªŒè¯æˆåŠŸï¼›		ARM->PC
-#define VALIDATE_LOCAL_FAILED		0x0112		//æœ¬åœ°è¯ä¹¦(H3)éªŒè¯å¤±è´¥ï¼›		ARM->PC	
+#define VALIDATE_LOCAL_REQ 		0x0110		//±¾µØÖ¤Êé(H3)ÑéÖ¤ÇëÇó£»		PC->ARM
+#define	VALIDATE_LOCAL_SUCCESS	0x0111		//±¾µØÖ¤Êé(H3)ÑéÖ¤³É¹¦£»		ARM->PC
+#define VALIDATE_LOCAL_FAILED		0x0112		//±¾µØÖ¤Êé(H3)ÑéÖ¤Ê§°Ü£»		ARM->PC	
 
-#define	VALIDATE_UPPER_SUCCESS	0x0114		//ä¸Šä½æœºè¯ä¹¦éªŒè¯æˆåŠŸï¼›		ARM->PC
-#define VALIDATE_UPPER_FAILED		0x0115		//ä¸Šä½æœºè¯ä¹¦éªŒè¯å¤±è´¥ï¼›		ARM->PC	
+#define	VALIDATE_UPPER_SUCCESS	0x0114		//ÉÏÎ»»úÖ¤ÊéÑéÖ¤³É¹¦£»		ARM->PC
+#define VALIDATE_UPPER_FAILED		0x0115		//ÉÏÎ»»úÖ¤ÊéÑéÖ¤Ê§°Ü£»		ARM->PC	
 
-#define VALIDATE_UPPER_CERT_START 		0x0116		//ä¸Šä½æœºè¯ä¹¦éªŒè¯,ä¸Šä½æœºå¼€å§‹ä¼ è¾“è¯ä¹¦		PC->ARM
-#define VALIDATE_UPPER_CERT_END 		0x0117		//ä¸Šä½æœºè¯ä¹¦éªŒè¯,ä¸Šä½æœºç»“æŸä¼ è¾“è¯ä¹¦,ä¼ è¾“ç»“æŸè‡ªåŠ¨å¼€å§‹éªŒè¯		PC->ARM
-#define VALIDATE_UPPER_CERT_DATA 		0x0118		//ä¸Šä½æœºè¯ä¹¦éªŒè¯,ä¸Šä½æœºä¼ è¾“è¯ä¹¦(å•ä¸ªè¯ä¹¦ä¼ è¾“)		PC->ARM
-#define VALIDATE_UPPER_END				0x0119		//ä¸Šä½æœºè¯ä¹¦éªŒè¯ç»“æŸï¼›		PC->ARM
+#define VALIDATE_UPPER_CERT_START 		0x0116		//ÉÏÎ»»úÖ¤ÊéÑéÖ¤,ÉÏÎ»»ú¿ªÊ¼´«ÊäÖ¤Êé		PC->ARM
+#define VALIDATE_UPPER_CERT_END 		0x0117		//ÉÏÎ»»úÖ¤ÊéÑéÖ¤,ÉÏÎ»»ú½áÊø´«ÊäÖ¤Êé,´«Êä½áÊø×Ô¶¯¿ªÊ¼ÑéÖ¤		PC->ARM
+#define VALIDATE_UPPER_CERT_DATA 		0x0118		//ÉÏÎ»»úÖ¤ÊéÑéÖ¤,ÉÏÎ»»ú´«ÊäÖ¤Êé(µ¥¸öÖ¤Êé´«Êä)		PC->ARM
+#define VALIDATE_UPPER_END				0x0119		//ÉÏÎ»»úÖ¤ÊéÑéÖ¤½áÊø£»		PC->ARM
 
 /*
-#define VALIDATE_UPPER_CERT_NAME 		0x011A		//ä¸Šä½æœºè¯ä¹¦éªŒè¯,ä¸Šä½æœºå¼€å§‹ä¼ è¾“è¯ä¹¦		PC->ARM
-#define VALIDATE_UPPER_CERT_DATA 		0x011B		//ä¸Šä½æœºè¯ä¹¦éªŒè¯,ä¸Šä½æœºå¼€å§‹ä¼ è¾“è¯ä¹¦		PC->ARM
+#define VALIDATE_UPPER_CERT_NAME 		0x011A		//ÉÏÎ»»úÖ¤ÊéÑéÖ¤,ÉÏÎ»»ú¿ªÊ¼´«ÊäÖ¤Êé		PC->ARM
+#define VALIDATE_UPPER_CERT_DATA 		0x011B		//ÉÏÎ»»úÖ¤ÊéÑéÖ¤,ÉÏÎ»»ú¿ªÊ¼´«ÊäÖ¤Êé		PC->ARM
 */
 
-#define DELETE_REQ 		0x0120		//åˆ é™¤è¯·æ±‚ï¼›		PC->ARM
-#define	DELETE_SUCCESS	0x0121		//åˆ é™¤æˆåŠŸï¼›		ARM->PC
-#define DELETE_FAILED		0x0122		//åˆ é™¤å¤±è´¥ï¼›		ARM->PC	
+#define DELETE_REQ 		0x0120		//É¾³ıÇëÇó£»		PC->ARM
+#define	DELETE_SUCCESS	0x0121		//É¾³ı³É¹¦£»		ARM->PC
+#define DELETE_FAILED		0x0122		//É¾³ıÊ§°Ü£»		ARM->PC	
 
-#define HEART_BEAT 0x6666			//å¿ƒè·³åŒ…ï¼›ARM->PC
+#define HEART_BEAT 0x6666			//ĞÄÌø°ü£»ARM->PC
 
 //CMD1;date package
-#define	INFO_DATA	0x1000				//è¯ä¹¦å¯†é’¥+äººå‘˜ä¿¡æ¯+CRCï¼›PC->ARM
-#define CERT_DATA_A	0x1001				//ç®¡ç†å‘˜æ³¨å†Œå®Œçš„è¯ä¹¦+éšæœºæ•°ï¼›ARM->PC
-#define CERT_DATA_B	0x1002				//ä¸Šä½æœºçš„è¯ä¹¦(å¯¼å…¥åˆ°H3ä¸­)ï¼›PC->ARM
-#define CERT_DATA_C	0x1003				//å­˜åœ¨H3ä¸Šçš„è¯ä¹¦(æ–°è¯ä¹¦å¯¼å…¥åˆ°PCä¸­)ï¼›ARM->PC
+#define	INFO_DATA	0x1000				//Ö¤ÊéÃÜÔ¿+ÈËÔ±ĞÅÏ¢+CRC£»PC->ARM
+#define CERT_DATA_A	0x1001				//¹ÜÀíÔ±×¢²áÍêµÄÖ¤Êé+Ëæ»úÊı£»ARM->PC
+#define CERT_DATA_B	0x1002				//ÉÏÎ»»úµÄÖ¤Êé(µ¼Èëµ½H3ÖĞ)£»PC->ARM
+#define CERT_DATA_C	0x1003				//´æÔÚH3ÉÏµÄÖ¤Êé(ĞÂÖ¤Êéµ¼Èëµ½PCÖĞ)£»ARM->PC
 
 
 //test;date package
-#define TEST_REG_ON_DEV    0x0200    //ä¸‹ä½æœºæ³¨å†Œè¯·æ±‚
-#define ONCE_VALIDATING_ON_DEV    0x0201    //ä¸‹ä½æœºè¯ä¹¦ä¸€æ¬¡éªŒè¯è¯·æ±‚
-#define KEEP_VALIDATING_ON_DEV    0x0202    //ä¸‹ä½æœºè¯ä¹¦è¿ç»­éªŒè¯è¯·æ±‚
+#define TEST_REG_ON_DEV    0x0200    //ÏÂÎ»»ú×¢²áÇëÇó
+#define ONCE_VALIDATING_ON_DEV    0x0201    //ÏÂÎ»»úÖ¤ÊéÒ»´ÎÑéÖ¤ÇëÇó
+#define KEEP_VALIDATING_ON_DEV    0x0202    //ÏÂÎ»»úÖ¤ÊéÁ¬ĞøÑéÖ¤ÇëÇó
 
 
-/*********************ç”¨æˆ·ç±»å‹**********************/
-#define MGR		0x01		//ç®¡ç†å‘˜
-#define USR		0x02		//ç”¨æˆ·
-#define TEST_USER		0x04		//æµ‹è¯•
+/*********************ÓÃ»§ÀàĞÍ**********************/
+#define MGR		0x01		//¹ÜÀíÔ±
+#define USR		0x02		//ÓÃ»§
+#define TEST_USER		0x04		//²âÊÔ
 
 
-/*********************å¯†é’¥ã€éšæœºæ•°ã€è¯ä¹¦é•¿åº¦**********************/
+/*********************ÃÜÔ¿¡¢Ëæ»úÊı¡¢Ö¤Êé³¤¶È**********************/
 #define DEV_KEY_LENGTH 32
 #define RAN_NUM_LENGTH 32
 #define CERT_LENGTH 6148 //6144+2+2
 
 
 
-/*********************æ–‡ä»¶åŠç›®å½•è·¯å¾„**********************/
+/*********************ÎÄ¼ş¼°Ä¿Â¼Â·¾¶**********************/
 #define INFO_FILE "/etc/tg/info"
 #define MGR_CERT_PATH "/etc/tg/cert/mgr"
 #define USER_CERT_PATH "/etc/tg/cert/user"

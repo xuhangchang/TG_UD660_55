@@ -10,7 +10,7 @@
 #define SAVE_PIC
 
 
-/*****************鍥惧儚灏哄鍙傛暟******************/
+/*****************图像尺寸参数******************/
 #define CAM_9V034
 #define IMAGE_SIZE 161280 	//280*576
 #define CAMERA_WIDTH 576
@@ -39,13 +39,13 @@
 
 
 
-/*****************绾㈠鐏澘璋冭妭鍙傛暟******************/
+/*****************红外灯板调节参数******************/
 #define LIGHT_INIT 40
 #define LIGHT_STEP 2
 #define GRAY_LOW 95
 #define GRAY_HIGH 120
 
-/*********************spi鍙傛暟**********************/
+/*********************spi参数**********************/
 //#define TG_SPI_DEBUG 
 #define TG_SPI_Z32
 //#define TG_SPI_FPGA

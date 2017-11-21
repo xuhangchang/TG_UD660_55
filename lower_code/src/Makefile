@@ -1,11 +1,11 @@
-# 指令编译器和选项
+# ָ���������ѡ��
 #CC = arm-linux-gnueabihf-gcc
 CC = gcc
 CFLAGS=-Wall -std=gnu99
 
-# 目标文件
+# Ŀ���ļ�
 TARGET=main.out
-# 源文件
+# Դ�ļ�
 SRCS = 	main.c \
 		rtx.c \
 		fun.c \
@@ -19,19 +19,19 @@ SRCS = 	main.c \
 		
 		
 		
-# 头文件查找路径
+# ͷ�ļ�����·��
 INC = -I../inc
 
-# 库文件和库查找路径  
+# ���ļ��Ϳ����·��  
 DLIBS = -lpthread \
 		-lTGFingerVeinApi 
 
 LDFLAGS = -L/home/fa/so 
-# 指定运行时的库文件路径 
+# ָ������ʱ�Ŀ��ļ�·�� 
 RPATH = -Wl,-rpath=/home/fa/so 
-# 目标文件
+# Ŀ���ļ�
 OBJS = $(SRCS:.c=.o)
-# 链接为可执行文件
+# ����Ϊ��ִ���ļ�
 $(TARGET):$(OBJS)
 	$(CC) -o $@ $^ $(LDFLAGS) $(DLIBS) $(RPATH) -lm -O3
 #	@echo TARGET:$@
@@ -41,12 +41,12 @@ $(TARGET):$(OBJS)
 clean:
 	rm -rf $(TARGET) $(OBJS)
 
-# 连续动作，请清除再编译链接，最后执行
+# ����������������ٱ������ӣ����ִ��
 exec:clean $(TARGET)
-	@echo 开始执行
+	@echo ��ʼִ��
 	./$(TARGET)
-	@echo 执行结束
+	@echo ִ�н���
 
-# 编译规则 $@代表目标文件 $< 代表第一个依赖文件
+# ������� $@����Ŀ���ļ� $< ������һ�������ļ�
 %.o:%.c
 	$(CC) $(CFLAGS) $(INC) -o $@ -c $< -O3

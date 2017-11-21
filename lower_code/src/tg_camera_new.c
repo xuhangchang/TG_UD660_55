@@ -47,7 +47,7 @@ int cam_init()
     #endif
     
      #ifdef CAM_9V034
-    format.fmt.pix.pixelformat = V4L2_PIX_FMT_YVYU;//9V034 V4L2_PIX_FMT_YVYU æˆ– case V4L2_PIX_FMT_VYUY://9V034
+    format.fmt.pix.pixelformat = V4L2_PIX_FMT_YVYU;//9V034 V4L2_PIX_FMT_YVYU »ò case V4L2_PIX_FMT_VYUY://9V034
     #endif
     format.fmt.pix.width = CAMERA_WIDTH;
     format.fmt.pix.height = CAMERA_HEIGHT;
@@ -132,11 +132,11 @@ int cam_init()
 
 /*****************************************************************
 * function:		cam_get_image
-* description:  è·å–å›¾åƒ
-* param1:     	u8* out_buffer		:	å›¾åƒæ•°æ®	(input)
-* param2:		int out_buffer_size	:	å›¾åƒå¤§å°(input)
-* return:    	0   : æˆåŠŸ
-*				å…¶ä»–: å¤±è´¥
+* description:  »ñÈ¡Í¼Ïñ
+* param1:     	u8* out_buffer		:	Í¼ÏñÊı¾İ	(input)
+* param2:		int out_buffer_size	:	Í¼Ïñ´óĞ¡(input)
+* return:    	0   : ³É¹¦
+*				ÆäËû: Ê§°Ü
 * others:		
 * date:       	2017/11/09			
 * author:     	

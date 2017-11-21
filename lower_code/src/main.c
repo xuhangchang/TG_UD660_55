@@ -1,4 +1,4 @@
-ï»¿//	1102 net
+//	1102 net
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
@@ -114,14 +114,14 @@ int main(int argc, const char *argv[])
 	sound_send(fd_gpio,0xe3);//set sound value
 	pthread_mutex_init(&mutex_package,NULL);
 	pthread_mutex_init(&mutex_spi,NULL);
-/*************************åˆ›å»ºæ‘„åƒå¤´é‡‡é›†çº¿ç¨‹*************************/
+/*************************´´½¨ÉãÏñÍ·²É¼¯Ïß³Ì*************************/
 	if(pthread_create(&tgthread_camera_data_tid,NULL,tgthread_camera_data,NULL))
 	{
 		perror("fail to pthread_create");
 		exit(-1);
 	}
 	
-/*************************åˆ›å»ºå¿ƒè·³åŒ…çº¿ç¨‹*************************/
+/*************************´´½¨ĞÄÌø°üÏß³Ì*************************/
 	if(pthread_create(&tgthread_heart_beat_tid,NULL,tgthread_heart_beat,NULL))
 	{
 		perror("fail to pthread_create");
@@ -170,7 +170,7 @@ int main(int argc, const char *argv[])
 				printf("recv_cmd1 = %x\n",recv_pack.cmd1);
 				switch(recv_pack.cmd1){
 					case DEV_KEY:
-						printf("this is DEV_KEY \n");//è®¾å¤‡å¯†é’¥ï¼›		
+						printf("this is DEV_KEY \n");//Éè±¸ÃÜÔ¿£»		
 						memset(&send_pack,0,sizeof(TG_package));
 						if(test_crc(recv_buf,DEV_KEY_LENGTH))
 						{	
@@ -200,7 +200,7 @@ int main(int argc, const char *argv[])
 						pthread_mutex_unlock(&mutex_package);						
 						break;
 						
-					case ENROLL_REQ://æ³¨å†Œè¯·æ±‚ï¼›
+					case ENROLL_REQ://×¢²áÇëÇó£»
 						printf("this is ENROLL_REQ \n");
 						tg_pthread_destroy();
 						ret  = pthread_create(&tgthread_register_tid,NULL,tgthread_register,(void *)&new_user);
@@ -212,7 +212,7 @@ int main(int argc, const char *argv[])
 						}
 						break;
 
-					case VALIDATE_LOCAL_REQ://æœ¬åœ°è¯ä¹¦éªŒè¯è¯·æ±‚ï¼›
+					case VALIDATE_LOCAL_REQ://±¾µØÖ¤ÊéÑéÖ¤ÇëÇó£»
 						printf("this is VALIDATE_LOCAL_REQ \n");
 						memset(compare_success_path,0,sizeof(compare_success_path));
 						tg_pthread_destroy();
@@ -226,7 +226,7 @@ int main(int argc, const char *argv[])
 						}
 						break;	
 
-					case TEST_REG_ON_DEV://æµ‹è¯•æœ¬åœ°è¯ä¹¦ä¸€æ¬¡æ³¨å†Œè¯·æ±‚ï¼›
+					case TEST_REG_ON_DEV://²âÊÔ±¾µØÖ¤ÊéÒ»´Î×¢²áÇëÇó£»
 						printf("this is TEST_REG_ON_DEV \n");
 						tg_pthread_destroy();
 						ret  = pthread_create(&tgthread_test_register_tid,NULL,tgthread_test_register,NULL);
@@ -240,7 +240,7 @@ int main(int argc, const char *argv[])
 						break;	
 
 
-					case ONCE_VALIDATING_ON_DEV://æµ‹è¯•æœ¬åœ°è¯ä¹¦ä¸€æ¬¡éªŒè¯è¯·æ±‚ï¼›
+					case ONCE_VALIDATING_ON_DEV://²âÊÔ±¾µØÖ¤ÊéÒ»´ÎÑéÖ¤ÇëÇó£»
 						printf("this is ONCE_VALIDATING_ON_DEV \n");
 						tg_pthread_destroy();
 						test_continue_flag = 0;
@@ -253,7 +253,7 @@ int main(int argc, const char *argv[])
 						}
 						break;	
 
-					case KEEP_VALIDATING_ON_DEV://æµ‹è¯•æœ¬åœ°è¯ä¹¦è¿ç»­éªŒè¯è¯·æ±‚ï¼›
+					case KEEP_VALIDATING_ON_DEV://²âÊÔ±¾µØÖ¤ÊéÁ¬ĞøÑéÖ¤ÇëÇó£»
 						printf("this is KEEP_VALIDATING_ON_DEV \n");
 						tg_pthread_destroy();
 						test_continue_flag = 1;
@@ -267,7 +267,7 @@ int main(int argc, const char *argv[])
 						}
 						break;	
 
-					case VALIDATE_UPPER_CERT_START://ä¸Šä½æœºè¯ä¹¦éªŒè¯,ä¸Šä½æœºå¼€å§‹ä¼ è¾“è¯ä¹¦		PC->ARM
+					case VALIDATE_UPPER_CERT_START://ÉÏÎ»»úÖ¤ÊéÑéÖ¤,ÉÏÎ»»ú¿ªÊ¼´«ÊäÖ¤Êé		PC->ARM
 						printf("this is VALIDATE_UPPER_CERT_START \n");
 						pthread_mutex_lock(&mutex_spi);	
 						tg_spi_key_req(fd_spi);
@@ -282,7 +282,7 @@ int main(int argc, const char *argv[])
 						p_upper_compare_data = (stu_upper_data *)calloc(upper_cert_num,sizeof(stu_upper_data));
 						break;	
 						
-					case VALIDATE_UPPER_CERT_DATA://ä¸Šä½æœºè¯ä¹¦éªŒè¯,ä¸Šä½æœºä¼ è¾“è¯ä¹¦(å•ä¸ªè¯ä¹¦ä¼ è¾“)	PC->ARM
+					case VALIDATE_UPPER_CERT_DATA://ÉÏÎ»»úÖ¤ÊéÑéÖ¤,ÉÏÎ»»ú´«ÊäÖ¤Êé(µ¥¸öÖ¤Êé´«Êä)	PC->ARM
 						printf("this is VALIDATE_UPPER_CERT_DATA \n");
 						strcpy((p_upper_compare_data+upper_cert_count)->cert_name,recv_pack.cert_name);
 
@@ -303,7 +303,7 @@ int main(int argc, const char *argv[])
 						break;
 
 						
-					case VALIDATE_UPPER_CERT_END://ä¸Šä½æœºè¯ä¹¦éªŒè¯,ä¸Šä½æœºç»“æŸä¼ è¾“è¯ä¹¦ (ä¼ è¾“ç»“æŸè‡ªåŠ¨å¼€å§‹éªŒè¯)		PC->ARM	PC->ARM
+					case VALIDATE_UPPER_CERT_END://ÉÏÎ»»úÖ¤ÊéÑéÖ¤,ÉÏÎ»»ú½áÊø´«ÊäÖ¤Êé (´«Êä½áÊø×Ô¶¯¿ªÊ¼ÑéÖ¤)		PC->ARM	PC->ARM
 						printf("this is VALIDATE_UPPER_CERT_END \n");						
 						tg_pthread_destroy();
 						ret  = pthread_create(&tgthread_upper_compare_tid,NULL,tgthread_upper_compare,p_upper_compare_data);
@@ -316,18 +316,18 @@ int main(int argc, const char *argv[])
 						}
 						break;
 
-					case VALIDATE_UPPER_END://ä¸Šä½æœºè¯ä¹¦éªŒè¯ç»“æŸï¼›		PC->ARM
+					case VALIDATE_UPPER_END://ÉÏÎ»»úÖ¤ÊéÑéÖ¤½áÊø£»		PC->ARM
 						printf("this is VALIDATE_UPPER pthread_cancel.\n");	
 						tg_pthread_destroy();			
 						break;
 
-					case FLOW_CANCEL://ç»“æŸæ­£åœ¨è¿›è¡Œä¸­çš„æ³¨å†Œæ¯”å¯¹æµç¨‹ï¼›	PC->ARM
+					case FLOW_CANCEL://½áÊøÕıÔÚ½øĞĞÖĞµÄ×¢²á±È¶ÔÁ÷³Ì£»	PC->ARM
 						printf("this is FLOW_CANCEL .\n");	
 						tg_pthread_destroy();
 
 						break;					
 
-					case INFO_DATA://è¯ä¹¦å¯†é’¥+äººå‘˜ä¿¡æ¯+CRC;
+					case INFO_DATA://Ö¤ÊéÃÜÔ¿+ÈËÔ±ĞÅÏ¢+CRC;
 						printf("this is INFO_DATA \n");
 						memset(&send_pack,0,sizeof(TG_package));
 						memset(&enroll_cert,0,sizeof(TG_cert));
@@ -382,7 +382,7 @@ int main(int argc, const char *argv[])
 						}					
 						break;
 					
-					case CERT_ENCRYPT://ä¸Šä½æœºå•ä¸ªè¯ä¹¦åŠ å¯†è¯·æ±‚ï¼›	PC->ARM
+					case CERT_ENCRYPT://ÉÏÎ»»úµ¥¸öÖ¤Êé¼ÓÃÜÇëÇó£»	PC->ARM
 						printf("this is CERT_ENCRYPT \n");
 						memset(&send_pack,0,sizeof(TG_package));
 
@@ -406,7 +406,7 @@ int main(int argc, const char *argv[])
 						pthread_mutex_unlock(&mutex_package);				
 						break;
 
-					case CERT_DECRYPT://ä¸Šä½æœºå•ä¸ªè¯ä¹¦è§£å¯†è¯·æ±‚ï¼›	PC->ARM
+					case CERT_DECRYPT://ÉÏÎ»»úµ¥¸öÖ¤Êé½âÃÜÇëÇó£»	PC->ARM
 						printf("this is CERT_DECRYPT \n");
 						memset(&send_pack,0,sizeof(TG_package));
 
@@ -432,7 +432,7 @@ int main(int argc, const char *argv[])
 						pthread_mutex_unlock(&mutex_package);				
 						break;
 
-					case GET_LOGINING_CERT://è¯·æ±‚è·å–åˆšç™»å½•ç”¨æˆ·çš„è¯ä¹¦ï¼›			PC->ARM
+					case GET_LOGINING_CERT://ÇëÇó»ñÈ¡¸ÕµÇÂ¼ÓÃ»§µÄÖ¤Êé£»			PC->ARM
 						printf("this is GET_LOGINING_CERT_REQ \n");
 						memset(&send_pack,0,sizeof(TG_package));
 
@@ -452,7 +452,7 @@ int main(int argc, const char *argv[])
 
 
 
-					case CERT_INFO_REQ://è¯·æ±‚ä¼ è¾“h3ä¸Šå­˜å‚¨çš„å„ç±»è¯ä¹¦ä¸ªæ•°,ä¿¡æ¯ï¼›	PC->ARM
+					case CERT_INFO_REQ://ÇëÇó´«Êäh3ÉÏ´æ´¢µÄ¸÷ÀàÖ¤Êé¸öÊı,ĞÅÏ¢£»	PC->ARM
 						printf("this is CERT_INFO_REQ \n");
 						memset(&send_pack,0,sizeof(TG_package));
 						send_pack.length= 0;
@@ -466,7 +466,7 @@ int main(int argc, const char *argv[])
 						pthread_mutex_unlock(&mutex_package);				
 						break;
 					
-					case CERT_DATA_B://ä¸Šä½æœºçš„è¯ä¹¦(å¯¼å…¥åˆ°H3ä¸­)ï¼›PC->ARM
+					case CERT_DATA_B://ÉÏÎ»»úµÄÖ¤Êé(µ¼Èëµ½H3ÖĞ)£»PC->ARM
 						printf("this is CERT_DATA_B \n");
 						memset(&send_pack,0,sizeof(TG_package));
 						memset(cert_name,0,sizeof(cert_name));
@@ -516,20 +516,20 @@ int main(int argc, const char *argv[])
 						break;
 
 
-					case CERT_DATA_REQ://è¯·æ±‚ä¼ è¾“h3ä¸Šå­˜å‚¨çš„å„ç±»è¯ä¹¦ï¼›
+					case CERT_DATA_REQ://ÇëÇó´«Êäh3ÉÏ´æ´¢µÄ¸÷ÀàÖ¤Êé£»
 						printf("this is CERT_DATA_REQ \n");
 						memset(&send_pack,0,sizeof(TG_package));
 						printf("compare_success_path = %s\n",compare_success_path);
 						tg_path_to_info(compare_success_path,send_pack.cert_name,&send_pack.id,&send_pack.cert_type);
 						read_data_hex((char*)&send_cert,sizeof(TG_cert),compare_success_path);	
 						send_pack.length= sizeof(TG_cert);
-						send_pack.cmd1 = CERT_DATA_C;//å­˜åœ¨H3ä¸Šçš„è¯ä¹¦(æ–°è¯ä¹¦å¯¼å…¥åˆ°PCä¸­)ï¼›ARM->PC
+						send_pack.cmd1 = CERT_DATA_C;//´æÔÚH3ÉÏµÄÖ¤Êé(ĞÂÖ¤Êéµ¼Èëµ½PCÖĞ)£»ARM->PC
 						pthread_mutex_lock(&mutex_package);
 						ret = TG_NetSendPackage(fd_net,&send_pack,(char*)&send_cert);
 						pthread_mutex_unlock(&mutex_package);						
 						break;
 
-					case UPPER_CERT_CONFIRM://ä¸Šä½æœºæ”¶åˆ°è¯ä¹¦ä¸”CRCæ­£ç¡®ï¼Œåˆ é™¤åŸæ¥çš„è¯ä¹¦ï¼›	PC->ARM
+					case UPPER_CERT_CONFIRM://ÉÏÎ»»úÊÕµ½Ö¤ÊéÇÒCRCÕıÈ·£¬É¾³ıÔ­À´µÄÖ¤Êé£»	PC->ARM
 						memset(&send_pack,0,sizeof(TG_package));
 						send_pack.length = 0;
 						if(0 == tg_delete_file(recv_pack.cert_name))
@@ -542,7 +542,7 @@ int main(int argc, const char *argv[])
 						break;
 
 						
-					case UPPER_CERT_NO_CONFIRM://ä¸Šä½æœºæ²¡æ”¶åˆ°è¯ä¹¦æˆ–è€…CRCé”™è¯¯ï¼Œé‡æ–°ä¼ è¾“éªŒè¯æˆåŠŸçš„æœ¬åœ°è¯ä¹¦ï¼›	PC->ARM					
+					case UPPER_CERT_NO_CONFIRM://ÉÏÎ»»úÃ»ÊÕµ½Ö¤Êé»òÕßCRC´íÎó£¬ÖØĞÂ´«ÊäÑéÖ¤³É¹¦µÄ±¾µØÖ¤Êé£»	PC->ARM					
 						memset(&send_pack,0,sizeof(TG_package));
 						send_pack.length= sizeof(TG_cert);
 						send_pack.cmd1 = CERT_DATA_C;
@@ -551,14 +551,14 @@ int main(int argc, const char *argv[])
 						pthread_mutex_unlock(&mutex_package);						
 						break;
 						
-					case REG_CERT_RESEND://ä¸‹ä½æœºæ³¨å†Œå®Œä¼ ç»™ä¸Šä½æœºçš„è¯ä¹¦CRCé”™è¯¯ï¼Œé‡æ–°æ³¨å†Œçš„è¯ä¹¦ï¼›	PC->ARM			
+					case REG_CERT_RESEND://ÏÂÎ»»ú×¢²áÍê´«¸øÉÏÎ»»úµÄÖ¤ÊéCRC´íÎó£¬ÖØĞÂ×¢²áµÄÖ¤Êé£»	PC->ARM			
 						//CERT_DATA_A
 						pthread_mutex_lock(&mutex_package);
 						ret = TG_NetSendPackage(fd_net,&send_pack,&enroll_cert);
 						pthread_mutex_unlock(&mutex_package);						
 						break;
 						
-					case RAN_NUM_REQ://éšæœºæ•°è¯·æ±‚ï¼›
+					case RAN_NUM_REQ://Ëæ»úÊıÇëÇó£»
 						printf("this is RAN_NUM_REQ \n");
 						memset(&send_pack,0,sizeof(TG_package));
 						pthread_mutex_lock(&mutex_spi);
@@ -578,7 +578,7 @@ int main(int argc, const char *argv[])
 						pthread_mutex_unlock(&mutex_package);				
 						break;
 
-					case DELETE_REQ://åˆ é™¤è¯·æ±‚ï¼›		PC->ARM
+					case DELETE_REQ://É¾³ıÇëÇó£»		PC->ARM
 						printf("this is DELETE_REQ \n");
 //						sprintf(delete_file,"%s",recv_pack.cert_name);
 						if(0 == remove(recv_pack.cert_name))
@@ -626,7 +626,7 @@ int main(int argc, const char *argv[])
 }
 
 /*****************************************************************************
- * 							æ‘„åƒå¤´é‡‡é›†çº¿ç¨‹å‡½æ•°
+ * 							ÉãÏñÍ·²É¼¯Ïß³Ìº¯Êı
 *****************************************************************************/
 void *tgthread_camera_data(void *arg)
 {
@@ -669,7 +669,7 @@ void *tgthread_camera_data(void *arg)
 
 
 /*****************************************************************************
- * 								æ³¨å†Œçº¿ç¨‹å‡½æ•°
+ * 								×¢²áÏß³Ìº¯Êı
 *****************************************************************************/
 void * tgthread_register(void * arg)
 {
@@ -798,7 +798,7 @@ fail:
 
 
 /*****************************************************************************
- * 							armç«¯è¯ä¹¦æ¯”å¯¹çº¿ç¨‹å‡½æ•°
+ * 							arm¶ËÖ¤Êé±È¶ÔÏß³Ìº¯Êı
 *****************************************************************************/
 void *tgthread_local_compare(void *arg)
 {
@@ -913,7 +913,7 @@ void *tgthread_local_compare(void *arg)
 
 
 /*****************************************************************************
- * 							PCç«¯è¯ä¹¦æ¯”å¯¹çº¿ç¨‹å‡½æ•°
+ * 							PC¶ËÖ¤Êé±È¶ÔÏß³Ìº¯Êı
 *****************************************************************************/
 void *tgthread_upper_compare(void *arg)
 {	
@@ -1030,7 +1030,7 @@ void *tgthread_upper_compare(void *arg)
 
 
 /*****************************************************************************
- * 							æµ‹è¯•ç¨‹åºæ³¨å†Œçº¿ç¨‹å‡½æ•°
+ * 							²âÊÔ³ÌĞò×¢²áÏß³Ìº¯Êı
 *****************************************************************************/
 void * tgthread_test_register(void * arg)
 {
@@ -1181,7 +1181,7 @@ fail1:
 
 
 /*****************************************************************************
- * 							æµ‹è¯•ç¨‹åºæ¯”å¯¹çº¿ç¨‹å‡½æ•°
+ * 							²âÊÔ³ÌĞò±È¶ÔÏß³Ìº¯Êı
 *****************************************************************************/
 void *tgthread_test_compare(void *arg)
 {
@@ -1309,7 +1309,7 @@ void *tgthread_test_compare(void *arg)
 
 
 /*****************************************************************************
- * 							å¿ƒè·³åŒ…çº¿ç¨‹å‡½æ•°
+ * 							ĞÄÌø°üÏß³Ìº¯Êı
 *****************************************************************************/
 void *tgthread_heart_beat(void *arg)
 {
@@ -1343,9 +1343,9 @@ void *tgthread_heart_beat(void *arg)
 
 /*****************************************************************  
 * function:		tg_pthread_destroy
-* description:  çº¿ç¨‹é”€æ¯å‡½æ•°    	
-* return:    	0: æˆåŠŸ
-*				1: å¤±è´¥   
+* description:  Ïß³ÌÏú»Ùº¯Êı    	
+* return:    	0: ³É¹¦
+*				1: Ê§°Ü   
 * other:
 *
 * date:       	2017/11/09			
