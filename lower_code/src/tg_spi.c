@@ -170,7 +170,7 @@ int tg_spi_once_32(int fd,uint8_t cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 	send_buf[34] = (uint8_t)((crccmpval&0xff00)>>8);
 	send_buf[35] = (uint8_t)(crccmpval&0x00ff);
 
-#ifdef PRINT_SPI	
+#ifdef SPI_DEBUG	
 	for(i = 0;i<36;i++)
 	{
 		if(0 == i%6)
@@ -182,7 +182,7 @@ int tg_spi_once_32(int fd,uint8_t cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 	//WRITE DATA
 	write(fd,send_buf,36);
 	//READ DATA      
-	sleep(1);
+	usleep(10);
 	do
 	{  
 		read(fd,recv_buf,1);
@@ -194,7 +194,7 @@ int tg_spi_once_32(int fd,uint8_t cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 	memcpy(rx_buf,recv_buf+2,32);
 
 	//PRINT READ DATE
-#ifdef PRINT_SPI	
+#ifdef SPI_DEBUG	
 	printf("recv cmd = %x\n",*(rx_buf+1));
 	printf("%s recv crc1 = %x\n",__FUNCTION__,recv_buf[34]);
 	printf("%s recv crc2 = %x\n",__FUNCTION__,recv_buf[35]);
@@ -267,22 +267,14 @@ int tg_spi_once_6k(int fd,int cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 	uint8_t idel_flag = 0x33;
 	uint8_t send_buf[6148] = {0};
 	uint8_t recv_buf[6148] = {0};
-	long l1,l2,l3,l4;
-	struct timeval tv;
 
 	send_buf[0] = 0x55;
 	send_buf[1] = cmd;
 	memcpy(send_buf+2,tx_buf,6146);
 	tg_spi_xor(send_buf+2,6144);
 	//WRITE DATA
-	gettimeofday(&tv,NULL);
-	l1 = tv.tv_sec*1000*1000 + tv.tv_usec;
-
 	write(fd,send_buf,6148);
-	gettimeofday(&tv,NULL);
-	l2 = tv.tv_sec*1000*1000+tv.tv_usec;
-	printf("6k time1 = %ld ms  \n",(l2-l1)/1000);
-	
+	usleep(10);
 	//READ DATA 
 	do{  
 		read(fd,recv_buf,1);
@@ -330,7 +322,7 @@ int tg_spi_once_6k(int fd,int cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 			break;
 	}
 	//CRC CHECK READ DATA	
-#ifdef PRINT_SPI
+#ifdef SPI_DEBUG
 	printf("%s recv crc1 = %x\n",__FUNCTION__,recv_buf[6146]);
 	printf("%s recv crc2 = %x\n",__FUNCTION__,recv_buf[6147]);
 #endif
@@ -407,7 +399,7 @@ int tg_spi_tx_rx(int fd,uint8_t cmd,uint8_t *tx_buf,uint8_t *rx_buf,int len)
 	else
 		ret = 0;
 	
-#ifdef PRINT_SPI
+#ifdef SPI_DEBUG
 //	printf("time2 = %ld  us\n",l2-l1);
 	printf("***************error_num = %d count = %d***************\n",errornum,count);
 #endif
