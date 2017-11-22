@@ -1087,8 +1087,7 @@ void * tgthread_test_register(void * arg)
 #ifdef SAVE_PIC		
 				TG_SaveRotateBmp(*(pic_data+i), CAMERA_ROI_WIDTH, CAMERA_ROI_HEIGHT, "showBmp.bmp");
 #endif
-				XorEncryptDecrypt(pic_data, CAMERA_ROI_WIDTH*CAMERA_ROI_HEIGHT, 1);
-
+				XorEncryptDecrypt(*(pic_data+i), CAMERA_ROI_WIDTH*CAMERA_ROI_HEIGHT, 1);
 				//sound_send(0x00);		          //Bi   
 				if( 0 != TGImgExtractFeature(*(pic_data + i), CAMERA_ROI_WIDTH, CAMERA_ROI_HEIGHT, *(feature + i)) )      //create fingervein chara,return the result of pic quality judegement
 				{
@@ -1112,7 +1111,6 @@ void * tgthread_test_register(void * arg)
 				}
 				else
 				{					
-
 					if( i < 2)
 					{
 						sound_send(fd_gpio,0x04);	//qing zaifang yici

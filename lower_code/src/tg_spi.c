@@ -170,7 +170,7 @@ int tg_spi_once_32(int fd,uint8_t cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 	send_buf[34] = (uint8_t)((crccmpval&0xff00)>>8);
 	send_buf[35] = (uint8_t)(crccmpval&0x00ff);
 
-#ifdef SPI_DEBUG	
+#ifdef TG_SPI_DEBUG	
 	for(i = 0;i<36;i++)
 	{
 		if(0 == i%6)
@@ -194,7 +194,7 @@ int tg_spi_once_32(int fd,uint8_t cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 	memcpy(rx_buf,recv_buf+2,32);
 
 	//PRINT READ DATE
-#ifdef SPI_DEBUG	
+#ifdef TG_SPI_DEBUG	
 	printf("recv cmd = %x\n",*(rx_buf+1));
 	printf("%s recv crc1 = %x\n",__FUNCTION__,recv_buf[34]);
 	printf("%s recv crc2 = %x\n",__FUNCTION__,recv_buf[35]);
@@ -290,7 +290,10 @@ int tg_spi_once_6k(int fd,int cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 	tg_spi_xor(recv_buf+2,6144);
 	memcpy(rx_buf,recv_buf+2,6146);
 //	write_data_hex(recv_buf,6148,"encrypt_recv.dat");
+#ifdef TG_SPI_DEBUG
 	printf("recv cmd = %x\n",*(recv_buf+1));
+#endif
+
 	switch(recv_buf[1])
 	{
 		case 0:	//cmd = 0
@@ -308,7 +311,9 @@ int tg_spi_once_6k(int fd,int cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 		case 0x41:	//encrypt success
 		case 0x81:	//decrypt success
 			crccmpval=spi_CrcCompute(recv_buf+2,6144,0); 
+#ifdef TG_SPI_DEBUG
 			printf("crccmpval = %x\n",crccmpval);
+#endif
 			if(((uint8_t)((crccmpval&0xff00)>>8) == recv_buf[6146])&&((uint8_t)(crccmpval&0x00ff)==recv_buf[6147])) 
 				ret = 0;
 			else	
@@ -322,7 +327,7 @@ int tg_spi_once_6k(int fd,int cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 			break;
 	}
 	//CRC CHECK READ DATA	
-#ifdef SPI_DEBUG
+#ifdef TG_SPI_DEBUG
 	printf("%s recv crc1 = %x\n",__FUNCTION__,recv_buf[6146]);
 	printf("%s recv crc2 = %x\n",__FUNCTION__,recv_buf[6147]);
 #endif
@@ -399,7 +404,7 @@ int tg_spi_tx_rx(int fd,uint8_t cmd,uint8_t *tx_buf,uint8_t *rx_buf,int len)
 	else
 		ret = 0;
 	
-#ifdef SPI_DEBUG
+#ifdef TG_SPI_DEBUG
 //	printf("time2 = %ld  us\n",l2-l1);
 	printf("***************error_num = %d count = %d***************\n",errornum,count);
 #endif

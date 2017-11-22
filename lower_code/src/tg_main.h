@@ -21,14 +21,15 @@
 #define CUT_COL_START 74
 
 /*****************dev position********************/
-//	DEV		ROW		COL
-//	Z1		90		74
-//	Z2		10		20->40
+//	DEV					ROW		COL
+//  original			40		40
+//	Z1					90		74
+//	Z2					10		20->40
 //	Z3				
 //	Z4
-//
-//	F1		15		70
-//	F2		65		54
+//-------------------------------------------------
+//	F1					15		70
+//	F2					65		54
 //	F3
 //	F4
 //
@@ -46,7 +47,6 @@
 #define GRAY_HIGH 120
 
 /*********************spi²ÎÊý**********************/
-//#define TG_SPI_DEBUG 
 #define TG_SPI_Z32
 //#define TG_SPI_FPGA
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
@@ -54,7 +54,10 @@
 #define SPI_DEV "/dev/spidev0.0"
 #define SPI_SPEED 10000000  //max =10MHz,10000008=wrong   z32
 
-#define PRINT_SPI 
+#define TG_DEBUG
+//#define REG_DEBUG
+#define TG_SPI_DEBUG 
+
 
 
 

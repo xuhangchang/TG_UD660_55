@@ -276,6 +276,7 @@ int tg_get_one_file(char *dir_path,char *file_name,unsigned char *data)
 ******************************************************************/ 
 void display_tgpackage(TG_package* pack)
 {
+#ifdef TG_DEBUG
 	printf("--------------------------------------------------------\n");
 	printf("|------------------------PACKAGE------------------------\n");
 	printf("|device_name = %.32s\n",pack->device_name);
@@ -291,6 +292,7 @@ void display_tgpackage(TG_package* pack)
 	printf("|random_num = %.32s\n",pack->random_num);
 	printf("|cert_name = %.32s\n",pack->cert_name);
 	printf("--------------------------------------------------------\n");
+#endif
 
 }
 
@@ -307,6 +309,7 @@ void display_tgpackage(TG_package* pack)
 ******************************************************************/
 void display_cert(TG_cert* pack)
 {
+#ifdef TG_DEBUG
 	printf("--------------------------------------------------------\n");
 	printf("|---------------------CERTIFICATION---------------------\n");
 	printf("|cert user_name = %.32s\n",pack->user_name);//\u7528\u6237\u540D
@@ -316,6 +319,7 @@ void display_cert(TG_cert* pack)
 	printf("|cert crc1 = %x\n",pack->crc[0]);
 	printf("|cert crc2 = %x\n",pack->crc[1]);
 	printf("--------------------------------------------------------\n");
+#endif
 }
 
 
@@ -526,11 +530,14 @@ int dat_get_usr_dat(char* addr,stu_usr *usr_addr,unsigned char *dat)
 	{ 
 		if(entry->d_type == 8)
 		{
+#ifdef TG_DEBUG
 			printf("%s\n", entry->d_name);/* print all name in this dir  */ 
+#endif
 			memset(str_addr,0,256*sizeof(char));
 			sprintf(str_addr,"%s/%s",addr,entry->d_name);
-
-			printf("addr = %s,i = %d\n", str_addr,i);/* print all address*/ 			
+#ifdef TG_DEBUG
+			printf("addr = %s,i = %d\n", str_addr,i);/* print all address*/ 
+#endif
 //			memset(tempData,0,sizeFeature3*sizeof(char));
 			read_data_hex(tempData,sizeFeature3*sizeof(char),str_addr);
 			memcpy(dat + i*sizeFeature3,tempData,sizeFeature3);
@@ -589,7 +596,10 @@ int dat_get_local_cert(int fd,char* addr,stu_usr *usr_addr,TG_cert * cert)
 //			printf("%s\n", entry->d_name);/* print all name in this dir  */ 
 			memset(str_addr,0,256*sizeof(char));
 			sprintf(str_addr,"%s/%s",addr,entry->d_name);
-			printf("cert addr = %s,i = %d\n", str_addr,i);/* print all address*/ 			
+#ifdef TG_DEBUG
+			printf("cert addr = %s,i = %d\n", str_addr,i);/* print all address*/
+#endif
+
 //			memset(tempData,0,sizeFeature3*sizeof(char));
 			read_data_hex(tempCert,sizeof(TG_cert),str_addr);
 

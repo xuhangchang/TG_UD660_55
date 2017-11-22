@@ -1,8 +1,7 @@
 #ifndef HEAD_H 
 #define HEAD_H 
 
-#define TG_DEBUG
-//#define REG_DEBUG
+
 
 /*********************ЦёБо**********************/
 //CMD1;no date package
