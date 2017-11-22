@@ -567,16 +567,22 @@ int main(int argc, const char *argv[])
 						memset(&send_pack,0,sizeof(TG_package));
 						pthread_mutex_lock(&mutex_spi);
 						ret_spi = tg_spi_random_num_req(fd_spi,ran_num);
-						if (ret_spi < 0)
-							printf("tg_spi_random_num_req  failed\n");
 						pthread_mutex_unlock(&mutex_spi);
-						printf("tg_spi_random_num_req  success\n");
-						
+						if (ret_spi < 0)
+						{
+							printf("tg_spi_random_num_req  failed\n");
+							send_pack.cmd1 = RAN_NUM_FAIL;
+						}
+						else
+						{
+							printf("tg_spi_random_num_req  success\n");
+							send_pack.cmd1 = RAN_NUM_SUCCESS;
+						}
 						
 						memcpy(send_pack.random_num,ran_num,32);
 //						write_data_hex(ran_num,RAN_NUM_LENGTH,RAN_NUM_PATH);
 						send_pack.length= 0;
-						send_pack.cmd1 = RAN_NUM;
+						
 						pthread_mutex_lock(&mutex_package);
 						ret = TG_NetSendPackage(fd_net,&send_pack,NULL);
 						pthread_mutex_unlock(&mutex_package);				
