@@ -11,9 +11,9 @@
 #define DEV_KEY_SET_FAILED 0x0003		//设备密钥设置失败；  ARM->PC
 
 #define	RAN_NUM_REQ			0x0006		//随机数请求；	PC->ARM
-#define	RAN_NUM				0x0007	//随机数；	ARM->PC
+#define	RAN_NUM_SUCCESS		0x0007	//随机数获取成功；	ARM->PC
+#define	RAN_NUM_FAIL		0x0008	//随机数获取失败；	ARM->PC
 
-#define	RESEND_CERT_REQ		0x0008	//请求重新传输证书，注册完的超管或管理员证书；	PC->ARM
 #define	CERT_INFO_REQ		0x0020	//请求传输h3上存储的各类证书个数,信息，对应 CERT_NUM；	PC->ARM
 #define	CERT_DATA_REQ		0x0021	//请求传输h3上存储的各类证书；	PC->ARM
 
@@ -69,6 +69,7 @@
 #define CERT_DATA_A	0x1001				//管理员注册完的证书+随机数；ARM->PC
 #define CERT_DATA_B	0x1002				//上位机的证书(导入到H3中)；PC->ARM
 #define CERT_DATA_C	0x1003				//存在H3上的证书(新证书导入到PC中)；ARM->PC
+#define CERT_DATA_A_FAIL	0x1004				//管理员注册完的证书加密失败；ARM->PC
 
 
 //test;date package

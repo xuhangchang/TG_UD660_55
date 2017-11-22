@@ -348,14 +348,18 @@ int main(int argc, const char *argv[])
 							pthread_mutex_unlock(&mutex_spi);
 							
 							if (ret_spi < 0)
+							{
+								send_pack.cmd1 = CERT_DATA_A_FAIL;
 								printf("tg_spi_cert_encrypt  failed\n");
-							printf("tg_spi_cert_encrypt  success\n");
-							
-
+							}
+							else
+							{
+								send_pack.cmd1 = CERT_DATA_A;
+								printf("tg_spi_cert_encrypt  success\n");
+							}
 
 							/*mgr usr upload cert to pc*/
-							send_pack.cert_type = recv_pack.cert_type;
-							send_pack.cmd1 = CERT_DATA_A;
+							send_pack.cert_type = recv_pack.cert_type;								
 							send_pack.length = sizeof(TG_cert);	
 							memcpy(send_pack.random_num,ran_num,32);
 
@@ -1129,13 +1133,6 @@ void * tgthread_test_register(void * arg)
 	}
 	if( 0 == re )
 	{	
-		sound_send(fd_gpio,0x02);	//dengji chenggong
-		printf("this is test ENROLL success \n");
-		send_pack.length= 0;
-		send_pack.cmd1 = ENROLL_SUCCESS;			
-		pthread_mutex_lock(&mutex_package);
-		ret = TG_NetSendPackage(fd_net,&send_pack,NULL);
-		pthread_mutex_unlock(&mutex_package);
 		/*test user save cert in arm*/
 		memset(&test_enroll_cert,0,sizeof(TG_cert));
 		memcpy(test_enroll_cert.chara,tempRegisterData,sizeFeature3);
@@ -1147,7 +1144,18 @@ void * tgthread_test_register(void * arg)
 		ret_spi = tg_spi_cert_encrypt(fd_spi,&test_enroll_cert);
 		pthread_mutex_unlock(&mutex_spi);
 		if (ret_spi < 0)
+		{
+			goto fail1;
 			printf("tg_spi_cert_encrypt  failed\n");
+		}
+
+		sound_send(fd_gpio,0x02);	//dengji chenggong
+		printf("this is test ENROLL success \n");
+		send_pack.length= 0;
+		send_pack.cmd1 = ENROLL_SUCCESS;			
+		pthread_mutex_lock(&mutex_package);
+		ret = TG_NetSendPackage(fd_net,&send_pack,NULL);
+		pthread_mutex_unlock(&mutex_package);
 
 		sprintf(cert_path,"%s/%d",TSET_USER_CERT_PATH,rand());	
 		write_data_hex(&test_enroll_cert,sizeof(TG_cert),cert_path);
