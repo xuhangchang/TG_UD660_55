@@ -23,7 +23,6 @@ int main(int argc, const char *argv[])
 //		printf("pwm_cmd = %s\n",pwm_cmd);
 		write(fd,&pwm_cmd,sizeof(pwm_cmd));
 		memset(pwm_cmd,0,10);
-//		sleep(5);
 	}
 	close(fd);
 	

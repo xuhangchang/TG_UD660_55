@@ -195,7 +195,7 @@ int tg_spi_once_32(int fd,uint8_t cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 
 	//PRINT READ DATE
 #ifdef TG_SPI_DEBUG	
-	printf("recv cmd = %x\n",*(rx_buf+1));
+	printf("recv cmd = %x\n",*(recv_buf+1));
 	printf("%s recv crc1 = %x\n",__FUNCTION__,recv_buf[34]);
 	printf("%s recv crc2 = %x\n",__FUNCTION__,recv_buf[35]);
 	for(i = 0;i<36;i++)

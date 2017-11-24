@@ -229,7 +229,7 @@ manual_cs = 0
 
 [gpio_para]
 gpio_used = 1
-gpio_num = 6
+gpio_num = 8
 gpio_1       = port:PG11<1><default><default><0>
 gpio_2       = port:PA02<1><default><default><0>
 gpio_3       = port:PA03<1><default><default><0>
@@ -238,6 +238,8 @@ gpio_5       = port:PG09<1><default><default><0>
 gpio_6       = port:PA06<1><default><default><0>
 ;gpio_7       = port:PA01<1><default><default><0>
 gpio_8       = port:PA17<1><default><default><0>
+gpio_9       = port:PA04<1><default><default><0>
+
 
 ;[led_assign]
 ;normal_led = "gpio_pin_2"

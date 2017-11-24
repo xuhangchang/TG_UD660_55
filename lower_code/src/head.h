@@ -32,7 +32,7 @@
 #define	CERT_DECRYPT		0x0032	//上位机单个证书解密请求；	PC->ARM
 #define	CERT_ENCRYPT_DONE	0x0033	//上位机单个证书加密完成；	ARM->PC
 #define	CERT_DECRYPT_DONE	0x0034	//上位机单个证书解密完成；	ARM->PC
-#define	CERT_CRYPT_FAIL		0x0035	//上位机单个证书加解密失败；	ARM->PC
+#define	CERT_CRYPT_FAIL		0x0036	//上位机单个证书加解密失败；	ARM->PC
 
 #define	GET_LOGINING_CERT	0x0035	//请求获取刚登录用户的证书；			PC->ARM  	ARM->PC
 
