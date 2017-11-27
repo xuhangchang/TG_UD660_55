@@ -147,5 +147,28 @@ int touch_signal(int fd,int flag)
 }
 
 
+/*****************************************************************  
+* function:		detect_remove
+* description:  detect remove shell triger
+* param1: 		int fd			: gpio fd (input)
+*
+* return:    int :	1: key missing	
+*					0: key exist
+*										   
+* other:					 
+* date:       	2017/11/24			
+* author:     	Hangchang Xu
+******************************************************************/
+int detect_remove(int fd)
+{
+	int flag= 0;	
+	char buf = 0;
+	read(fd,&buf,sizeof(char));
+	if(buf >= 100)
+		return 1;		
+	else					
+		return 0;	
+}
+
 
 
