@@ -108,14 +108,14 @@ int touch_signal(int fd,int flag)
 	if(1 == flag)
 	{
 		start_time = clock();
-		while(3 != (touch&3) && inter_time < 8.0)
+		while(3 != (touch%10) && inter_time < 8.0)
 		{
 			end_time = clock();
 			inter_time = (double)(end_time - start_time)/CLOCKS_PER_SEC;
 			usleep(100000);
 			read(fd,&touch,sizeof(char));
 		}	
-		if(3 == (touch&3))		//detect touch 
+		if(3 == (touch%10))		//detect touch 
 			return 1;		
 		else			//no touch ,overtime
 			return 0;
@@ -124,22 +124,20 @@ int touch_signal(int fd,int flag)
 //compare model
 	if(2 == flag)
 	{
-		while( 3 != (touch&3))
+		while( 3 != (touch%10))
 		{
 			read(fd,&touch,sizeof(char));
 			usleep(100000);
 		}
-		if(3 == (touch&3))				//detect touch 
-			return 1;		
-		else					//no touch
-			return 0;	
+		return 1;		
+
 	}
 
 //detect release model
 	if(3 == flag)
 	{
 		read(fd,&touch,sizeof(char));
-		if(3 == (touch&3))				//detect touch 
+		if(3 == (touch%10))				//detect touch 
 			return 1;		
 		else					//no touch
 			return 0;	

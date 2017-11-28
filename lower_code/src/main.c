@@ -111,7 +111,7 @@ int main(int argc, const char *argv[])
 	if(fd_gpio < 0)
 		printf("can't open gpio\n");
 
-	sound_send(fd_gpio,0xe3);//set sound value
+	sound_send(fd_gpio,0xe1);//set sound value
 	pthread_mutex_init(&mutex_package,NULL);
 	pthread_mutex_init(&mutex_spi,NULL);
 /*************************创建摄像头采集线程*************************/
@@ -182,11 +182,17 @@ int main(int argc, const char *argv[])
 								printf("tg_spi_key_store  failed\n");
 								send_pack.cmd1 = DEV_KEY_SET_FAILED;							
 							}
-							printf("tg_spi_key_store  success\n");
-
-//							write_data_hex(recv_buf,DEV_KEY_LENGTH,DEV_KEY_PATH);
-					
-							send_pack.cmd1 = DEV_KEY_SET_SUCCESS;
+							else if(detect_remove(fd_gpio))
+							{
+								printf("tg_spi_key_store  failed,key missing\n");
+								send_pack.cmd1 = DEV_KEY_SET_FAILED;
+							}
+							else
+							{
+								printf("tg_spi_key_store  success\n");
+	//							write_data_hex(recv_buf,DEV_KEY_LENGTH,DEV_KEY_PATH);					
+								send_pack.cmd1 = DEV_KEY_SET_SUCCESS;
+							}
 							
 						}
 						else
@@ -357,6 +363,11 @@ int main(int argc, const char *argv[])
 								send_pack.cmd1 = CERT_DATA_A;
 								printf("tg_spi_cert_encrypt  success\n");
 							}
+							if(detect_remove(fd_gpio))
+							{
+								send_pack.cmd1 = CERT_DATA_A_FAIL;
+								printf("tg_spi_cert_encrypt  failed,key mmissing\n");
+							}
 
 							/*mgr usr upload cert to pc*/
 							send_pack.cert_type = recv_pack.cert_type;								
@@ -403,7 +414,13 @@ int main(int argc, const char *argv[])
 							printf("tg_spi_cert_encrypt  success\n");
 							send_pack.length= sizeof(TG_cert);
 							send_pack.cmd1 = CERT_ENCRYPT_DONE;	
-						}				
+						}	
+
+						if(detect_remove(fd_gpio))
+						{
+							send_pack.cmd1 = CERT_CRYPT_FAIL;
+							printf("tg_spi_cert_encrypt  failed,key missing\n");
+						}
 
 						pthread_mutex_lock(&mutex_package);
 						ret = TG_NetSendPackage(fd_net,&send_pack,recv_buf);
@@ -428,8 +445,13 @@ int main(int argc, const char *argv[])
 							send_pack.length= sizeof(TG_cert);
 							send_pack.cmd1 = CERT_DECRYPT_DONE; 
 						}
+						
+						if(detect_remove(fd_gpio))
+						{
+							send_pack.cmd1 = CERT_CRYPT_FAIL;
+							printf("tg_spi_cert_decrypt  failed,key missing\n");
+						}
 										
-
 						pthread_mutex_lock(&mutex_package);
 						ret = TG_NetSendPackage(fd_net,&send_pack,recv_buf);
 						printf("TG_HidSendPackage ret = %d\n",ret);
@@ -1141,6 +1163,13 @@ void * tgthread_test_register(void * arg)
 		memset(&test_enroll_cert,0,sizeof(TG_cert));
 		memcpy(test_enroll_cert.chara,tempRegisterData,sizeFeature3);
 		make_crc((char *)&test_enroll_cert,CERT_LENGTH-4);
+
+		if(detect_remove(fd_gpio))
+		{
+			goto fail1;
+			printf("key missing\n");
+		}
+
 
 		int ret_spi;
 		pthread_mutex_lock(&mutex_spi);
