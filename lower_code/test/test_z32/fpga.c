@@ -67,7 +67,7 @@ int main()
 
 	gettimeofday(&tv,NULL);
 	l1 = tv.tv_sec*1000*1000 + tv.tv_usec;
-//	tg_spi_key_store(spi_fd,tx_buf_32,rx_buf_32);
+	tg_spi_key_store(spi_fd,tx_buf_32,rx_buf_32);
 	gettimeofday(&tv,NULL);
 	l2 = tv.tv_sec*1000*1000 + tv.tv_usec;
 	printf("tg_spi_key_store  time = %ld ms  \n",(l2-l1)/1000);

@@ -231,6 +231,15 @@ int tg_spi_once_32(int fd,uint8_t cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 				printf("32 crc error  !!!!\n");
 				ret = -0xc1;
 			}
+#ifdef	TG_SPI_FPGA
+			if(0 == crccmpval)
+			{
+				printf("32 crc =0  !!!!\n");
+				ret = -0xc1;
+			}			
+#endif
+
+
 			break;
 		case 0x05://send key success
 		case 0x09://key store success

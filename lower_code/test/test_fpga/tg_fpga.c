@@ -270,7 +270,8 @@ int tg_spi_once_6k(int fd,int cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 	l2 = tv.tv_sec*1000*1000+tv.tv_usec;
 //	printf("6k write time = %ld ms  \n",(l2-l1)/1000);
 
-	usleep(1000);
+	usleep(10000);
+//	usleep(1000);
 	//READ DATA 
 	do{  
 		read(fd,recv_buf,1);
