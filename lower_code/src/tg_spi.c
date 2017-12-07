@@ -195,7 +195,7 @@ int tg_spi_once_32(int fd,uint8_t cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 
 	//PRINT READ DATE
 #ifdef TG_SPI_DEBUG	
-	printf("recv cmd = %x\n",*(recv_buf+1));
+	printf("tg_spi_once_32 recv cmd = %x\n",*(recv_buf+1));
 	printf("%s recv crc1 = %x\n",__FUNCTION__,recv_buf[34]);
 	printf("%s recv crc2 = %x\n",__FUNCTION__,recv_buf[35]);
 	for(i = 0;i<36;i++)
@@ -291,7 +291,7 @@ int tg_spi_once_6k(int fd,int cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 	memcpy(rx_buf,recv_buf+2,6146);
 //	write_data_hex(recv_buf,6148,"encrypt_recv.dat");
 #ifdef TG_SPI_DEBUG
-	printf("recv cmd = %x\n",*(recv_buf+1));
+	printf("tg_spi_once_6k recv cmd = %x\n",*(recv_buf+1));
 #endif
 
 	switch(recv_buf[1])
