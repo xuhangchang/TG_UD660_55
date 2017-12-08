@@ -69,6 +69,7 @@ int pthread_loc_flag = 0;
 int pthread_up_flag = 0;
 int pthread_test_reg_flag = 0;
 int pthread_test_com_flag = 0;
+int remove_flag = 0;
 
 int tg_pthread_destroy();
 
@@ -139,6 +140,8 @@ int main(int argc, const char *argv[])
 
 #endif
 #ifdef NET_DEV_H3	
+		if(0 == remove_flag)
+			remove_flag = detect_remove(fd_gpio);
 		printf("net_client_connect start\n");
 		if(fd_net<0){
 			fd_net=net_client_connect(SERVICE_ADDR,PORT);
@@ -159,6 +162,9 @@ int main(int argc, const char *argv[])
 				fd_net=-1;
 			}
 			pthread_mutex_unlock(&mutex_package);
+			if(0 == remove_flag)
+				remove_flag = detect_remove(fd_gpio);
+
 			printf("ret = %d\n",ret);
 	
 			if(0 == ret){//idlesse status
@@ -182,7 +188,7 @@ int main(int argc, const char *argv[])
 								printf("tg_spi_key_store  failed\n");
 								send_pack.cmd1 = DEV_KEY_SET_FAILED;							
 							}
-							else if(detect_remove(fd_gpio))
+							else if(remove_flag)
 							{
 								printf("tg_spi_key_store  failed,key missing\n");
 								send_pack.cmd1 = DEV_KEY_SET_FAILED;
@@ -349,8 +355,17 @@ int main(int argc, const char *argv[])
 							sprintf(new_user.new_reg_path,"%s/%s",USER_CERT_PATH,enroll_cert.user_name);
 
 							pthread_mutex_lock(&mutex_spi);
-							tg_spi_key_req(fd_spi);
+							ret_spi = tg_spi_key_req(fd_spi);
+#ifdef	TG_SPI_FPGA
+							if(ret_spi)
+								printf("TG_SPI_FPGA tg_spi_key_req error\n");
+							else
+								ret_spi = tg_spi_cert_encrypt(fd_spi,&enroll_cert);	 
+#endif
+#ifdef	TG_SPI_Z32
 							ret_spi = tg_spi_cert_encrypt(fd_spi,&enroll_cert);	
+#endif
+							
 							pthread_mutex_unlock(&mutex_spi);
 							
 							if (ret_spi < 0)
@@ -363,7 +378,7 @@ int main(int argc, const char *argv[])
 								send_pack.cmd1 = CERT_DATA_A;
 								printf("tg_spi_cert_encrypt  success\n");
 							}
-							if(detect_remove(fd_gpio))
+							if(remove_flag)
 							{
 								send_pack.cmd1 = CERT_DATA_A_FAIL;
 								printf("tg_spi_cert_encrypt  failed,key mmissing\n");
@@ -416,7 +431,7 @@ int main(int argc, const char *argv[])
 							send_pack.cmd1 = CERT_ENCRYPT_DONE;	
 						}	
 
-						if(detect_remove(fd_gpio))
+						if(remove_flag)
 						{
 							send_pack.cmd1 = CERT_CRYPT_FAIL;
 							printf("tg_spi_cert_encrypt  failed,key missing\n");
@@ -432,8 +447,17 @@ int main(int argc, const char *argv[])
 						memset(&send_pack,0,sizeof(TG_package));
 
 						pthread_mutex_lock(&mutex_spi);
-						tg_spi_key_req(fd_spi);
+						ret_spi = tg_spi_key_req(fd_spi);
+#ifdef	TG_SPI_FPGA
+						if(ret_spi)
+							printf("TG_SPI_FPGA tg_spi_key_req error\n");
+						else
+							ret_spi = tg_spi_cert_decrypt(fd_spi,recv_buf); 
+#endif
+#ifdef	TG_SPI_Z32
 						ret_spi = tg_spi_cert_decrypt(fd_spi,recv_buf); 
+#endif
+
 						pthread_mutex_unlock(&mutex_spi);
 						if (ret_spi < 0){
 							printf("tg_spi_cert_decrypt  failed\n");
@@ -446,7 +470,7 @@ int main(int argc, const char *argv[])
 							send_pack.cmd1 = CERT_DECRYPT_DONE; 
 						}
 						
-						if(detect_remove(fd_gpio))
+						if(remove_flag)
 						{
 							send_pack.cmd1 = CERT_CRYPT_FAIL;
 							printf("tg_spi_cert_decrypt  failed,key missing\n");
@@ -1164,7 +1188,7 @@ void * tgthread_test_register(void * arg)
 		memcpy(test_enroll_cert.chara,tempRegisterData,sizeFeature3);
 		make_crc((char *)&test_enroll_cert,CERT_LENGTH-4);
 
-		if(detect_remove(fd_gpio))
+		if(remove_flag)
 		{
 			goto fail1;
 			printf("key missing\n");
@@ -1173,8 +1197,16 @@ void * tgthread_test_register(void * arg)
 
 		int ret_spi;
 		pthread_mutex_lock(&mutex_spi);
-		tg_spi_key_req(fd_spi);
+		ret_spi = tg_spi_key_req(fd_spi);
+#ifdef	TG_SPI_FPGA
+		if(ret_spi)
+			printf("TG_SPI_FPGA tg_spi_key_req error\n");
+		else
+			ret_spi = tg_spi_cert_encrypt(fd_spi,&test_enroll_cert); 
+#endif
+#ifdef	TG_SPI_Z32
 		ret_spi = tg_spi_cert_encrypt(fd_spi,&test_enroll_cert);
+#endif	
 		pthread_mutex_unlock(&mutex_spi);
 		if (ret_spi < 0)
 		{

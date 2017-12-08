@@ -27,11 +27,14 @@
 //	Z2					10		20->40
 //	Z3					50		80
 //	Z4
+//	Z5
+//
 //-------------------------------------------------
 //	F1					15		70
 //	F2					65		54
 //	F3					
 //	F4
+//	F4					15 		80
 //
 /*************************************************/
 #define TZD_LENGTH 1296
@@ -47,8 +50,8 @@
 #define GRAY_HIGH 120
 
 /*********************spi²ÎÊý**********************/
-#define TG_SPI_Z32
-//#define TG_SPI_FPGA
+//#define TG_SPI_Z32
+#define TG_SPI_FPGA
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
 #define CRC_DFE_POLY    0x8005	
 #define SPI_DEV "/dev/spidev0.0"
