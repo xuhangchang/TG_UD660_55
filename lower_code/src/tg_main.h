@@ -22,19 +22,18 @@
 
 /*****************dev position********************/
 //	DEV					ROW		COL
-//  original			40		40
 //	Z1					90		90
-//	Z2					10		20->40
+//	Z2					10		40
 //	Z3					50		80
-//	Z4
+//	Z4					25		40
 //	Z5
 //
 //-------------------------------------------------
 //	F1					15		70
-//	F2					65		54
-//	F3					
-//	F4
-//	F4					15 		80
+//	F2					65		55
+//	F3					30		70
+//	F4					15		80
+//	F5					5 		60
 //
 /*************************************************/
 #define TZD_LENGTH 1296
@@ -55,8 +54,8 @@
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
 #define CRC_DFE_POLY    0x8005	
 #define SPI_DEV "/dev/spidev0.0"
-//#define SPI_SPEED 10000000  //max =10MHz,10000008=wrong   z32
-#define SPI_SPEED 5000000  //max =10MHz,10000008=wrong   z32
+#define SPI_SPEED 10000000  //max =10MHz,10000008=wrong   z32
+//#define SPI_SPEED 5000000  //max =10MHz,10000008=wrong   z32
 
 #define TG_DEBUG
 //#define REG_DEBUG

@@ -123,7 +123,6 @@ int tg_spi_init(int fd)
 	temp[0] = 0x55;
 	temp[1] = 0x04;
 
-
 /***************z32 init********************/
 	write(fd,temp,100);	
 
@@ -131,9 +130,7 @@ int tg_spi_init(int fd)
 		read(fd,temp,1);
 	}
 	while(temp[0] == 0x33);//z32
-
 	read(fd,temp+1,99);
-
 	printf("z32 init end\n");	
 /******************************************/
 	return 1;
@@ -188,9 +185,7 @@ int tg_spi_once_32(int fd,uint8_t cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 		read(fd,recv_buf,1);
 	}
 	while(recv_buf[0] == idel_flag);
-
 	read(fd,recv_buf+1,35);
-	
 	memcpy(rx_buf,recv_buf+2,32);
 
 	//PRINT READ DATE
@@ -231,13 +226,11 @@ int tg_spi_once_32(int fd,uint8_t cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 				printf("32 crc error  !!!!\n");
 				ret = -0xc1;
 			}
-#ifdef	TG_SPI_FPGA
 			if(0 == crccmpval)
 			{
 				printf("32 crc = 0  !!!!\n");
-				ret = -0xc1;
+				ret = -0xc2;
 			}			
-#endif
 			break;
 		case 0x05://send key success
 		case 0x09://key store success
@@ -281,7 +274,7 @@ int tg_spi_once_6k(int fd,int cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 	tg_spi_xor(send_buf+2,6144);
 	//WRITE DATA
 	write(fd,send_buf,6148);
-	usleep(10);
+	usleep(1000);
 	//READ DATA 
 	do{  
 		read(fd,recv_buf,1);
@@ -304,9 +297,17 @@ int tg_spi_once_6k(int fd,int cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 	switch(recv_buf[1])
 	{
 		case 0:	//cmd = 0
+#ifdef TG_SPI_Z32
+			usleep(500*1000);			
+			tg_spi_key_req(fd);
+#endif
 			ret = -0xc0;
 			break;
 		case 0x0b:	//cmd error
+#ifdef TG_SPI_Z32
+			usleep(500*1000);			
+			tg_spi_key_req(fd);
+#endif
 			ret = -0x0b;
 			break;
 		case 0x42:	///encrypt fail
@@ -330,6 +331,10 @@ int tg_spi_once_6k(int fd,int cmd,uint8_t *tx_buf,uint8_t *rx_buf)
 			}	
 			break;
 		default:
+#ifdef TG_SPI_Z32
+			usleep(500*1000);			
+			tg_spi_key_req(fd);
+#endif
 			ret = -1;
 			break;
 	}
@@ -372,7 +377,7 @@ int tg_spi_tx_rx(int fd,uint8_t cmd,uint8_t *tx_buf,uint8_t *rx_buf,int len)
 	int count_max = 10;
 #ifdef	TG_SPI_Z32
 	if(0x20 == cmd)
-		count_max = 0;
+		count_max = 10;
 #endif
 
 //cmd   8Bytes	
@@ -390,7 +395,8 @@ int tg_spi_tx_rx(int fd,uint8_t cmd,uint8_t *tx_buf,uint8_t *rx_buf,int len)
 		do{  
 			read(fd,rx_cmd,1);
 		}
-		while(rx_cmd[0] == 0x33);	
+		while(rx_cmd[0] == 0x33);
+		usleep(50);	
 		read(fd,rx_cmd+1,7);
 
 		usleep(1000);
