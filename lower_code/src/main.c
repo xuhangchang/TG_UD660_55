@@ -356,15 +356,7 @@ int main(int argc, const char *argv[])
 
 							pthread_mutex_lock(&mutex_spi);
 							ret_spi = tg_spi_key_req(fd_spi);
-#ifdef	TG_SPI_FPGA
-							if(ret_spi)
-								printf("TG_SPI_FPGA tg_spi_key_req error\n");
-							else
-								ret_spi = tg_spi_cert_encrypt(fd_spi,&enroll_cert);	 
-#endif
-#ifdef	TG_SPI_Z32
 							ret_spi = tg_spi_cert_encrypt(fd_spi,&enroll_cert);	
-#endif
 							
 							pthread_mutex_unlock(&mutex_spi);
 							
@@ -448,15 +440,7 @@ int main(int argc, const char *argv[])
 
 						pthread_mutex_lock(&mutex_spi);
 						ret_spi = tg_spi_key_req(fd_spi);
-#ifdef	TG_SPI_FPGA
-						if(ret_spi)
-							printf("TG_SPI_FPGA tg_spi_key_req error\n");
-						else
-							ret_spi = tg_spi_cert_decrypt(fd_spi,recv_buf); 
-#endif
-#ifdef	TG_SPI_Z32
 						ret_spi = tg_spi_cert_decrypt(fd_spi,recv_buf); 
-#endif
 
 						pthread_mutex_unlock(&mutex_spi);
 						if (ret_spi < 0){
@@ -1198,15 +1182,8 @@ void * tgthread_test_register(void * arg)
 		int ret_spi;
 		pthread_mutex_lock(&mutex_spi);
 		ret_spi = tg_spi_key_req(fd_spi);
-#ifdef	TG_SPI_FPGA
-		if(ret_spi)
-			printf("TG_SPI_FPGA tg_spi_key_req error\n");
-		else
-			ret_spi = tg_spi_cert_encrypt(fd_spi,&test_enroll_cert); 
-#endif
-#ifdef	TG_SPI_Z32
 		ret_spi = tg_spi_cert_encrypt(fd_spi,&test_enroll_cert);
-#endif	
+
 		pthread_mutex_unlock(&mutex_spi);
 		if (ret_spi < 0)
 		{
